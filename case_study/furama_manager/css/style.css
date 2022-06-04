@@ -82,6 +82,11 @@ button {
     background: #cca772;
 }
 
+.button--cancel {
+    padding: 10px 32px !important;
+    background: #79776e;
+}
+
 .button:focus {
     outline: 0;
     box-shadow: none;
@@ -860,6 +865,16 @@ button {
     color: #fff;
 }
 
+.cancel-banner-btn {
+    border: 2px solid #79776e;
+    padding: 10px 45px;
+}
+
+.cancel-banner-btn:hover {
+    background: #79776e;
+    color: #fff;
+}
+
 /*=================== home banner end ====================*/
 /*=================== home search form start ====================*/
 .form-search {
@@ -1512,6 +1527,12 @@ button {
 .button--active:hover {
     background: transparent;
     border-color: #cca772;
+    color: #222222;
+}
+
+.button--cancel:hover {
+    background: transparent;
+    border-color: #79776e;
     color: #222222;
 }
 

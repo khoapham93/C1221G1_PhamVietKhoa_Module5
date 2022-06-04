@@ -101,7 +101,7 @@
     <div class="container h-100">
         <div class="contact-banner">
             <div class="text-center">
-                <h1>OUR FACILITIES</h1>
+                <h1>Customers</h1>
             </div>
         </div>
     </div>
@@ -114,26 +114,12 @@
     <div class="container">
         <div class="section-intro text-center pb-80px">
             <div class="section-intro__style">
-                <img alt="" src="img/home/bed-icon.png">
+                <img alt="" src="img/home/user.png">
             </div>
-            <h2>Update Facility Information</h2>
+            <h2>Create New Customer</h2>
         </div>
         <div class="col-8 mx-auto">
             <div class="mx-auto shadow-lg p-3 mb-5 bg-white rounded-lg">
-                <input type="hidden" name="id"/>
-                <div class="form-group row">
-                    <label for="facilityTypeId" class="col-sm-3 col-form-label">Service type</label>
-                    <div class="col-sm-9">
-                        <select id="facilityTypeId"
-                                class="form-control"
-                                onchange="showFacilityType()">
-                            <option value="null">Select Facility type</option>
-                            <option value="1">Villa</option>
-                            <option value="2">House</option>
-                            <option value="null">Room</option>
-                        </select>
-                    </div>
-                </div>
                 <div class="form-group row">
                     <label for="name" class="col-sm-3 col-form-label">Name</label>
                     <div class="col-sm-9">
@@ -147,74 +133,59 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="floorSquare" class="col-sm-3 col-form-label">Floor square</label>
+                    <label for="birthday" class="col-sm-3 col-form-label">Birthday</label>
                     <div class="col-sm-9">
-                        <input type="number" class="form-control" id="floorSquare">
+                        <input type="date" class="form-control" id="birthday">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="rentalFee" class="col-sm-3 col-form-label">Rental Fee</label>
+                    <label for="idCard" class="col-sm-3 col-form-label">Id card</label>
                     <div class="col-sm-9">
-                        <input type="number" class="form-control" id="rentalFee" step="any">
+                        <input type="number" class="form-control" id="idCard">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="maximumPeople" class="col-sm-3 col-form-label">Maximum people</label>
+                    <label for="phone" class="col-sm-3 col-form-label">Phone</label>
                     <div class="col-sm-9">
-                        <input type="number" class="form-control" id="maximumPeople">
+                        <input type="number" class="form-control" id="phone">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="rentType" class="col-sm-3 col-form-label">Service type</label>
+                    <label for="email" class="col-sm-3 col-form-label">Email</label>
+                    <div class="col-sm-9">
+                        <input type="email" class="form-control" id="email">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="address" class="col-sm-3 col-form-label">Address</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="address">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="gender" class="col-sm-3 col-form-label">Gender</label>
                     <div class="col-sm-9">
                         <select class="form-control"
-                                id="rentType"
-                                name="rentType">
-                            <option value="null">Select Rent type</option>
-                            <option value="1">Hour</option>
-                            <option value="2">Day</option>
-                            <option value="3">Month</option>
-                            <option value="4">Year</option>
+                                id="gender"
+                                name="gender">
+                            <option value="-1">Other</option>
+                            <option value="0">Female</option>
+                            <option value="1">Male</option>
                         </select>
                     </div>
                 </div>
-                <!--                 House and Villa-->
-                <div id="villaAndHouseOnly">
-                    <div class="form-group row">
-                        <label for="roomStandard" class="col-sm-3 col-form-label">Room standard</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="roomStandard">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="description" class="col-sm-3 col-form-label">Description</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="description">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="numberFloor" class="col-sm-3 col-form-label">Number of floor</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="numberFloor">
-                        </div>
-                    </div>
-                </div>
-                <!--                Villa-->
-                <div id="villaOnly">
-                    <div class="form-group row">
-                        <label for="poolSquare" class="col-sm-3 col-form-label">Pool square</label>
-                        <div class="col-sm-9">
-                            <input type="number" class="form-control" id="poolSquare">
-                        </div>
-                    </div>
-                </div>
-                <!--                Room-->
-                <div id="roomOnly">
-                    <div class="form-group row">
-                        <label for="freeServiceInclude" class="col-sm-3 col-form-label">Free service include</label>
-                        <div class="col-sm-9">
-                            <input type="number" class="form-control" id="freeServiceInclude">
-                        </div>
+                <div class="form-group row">
+                    <label for="customerType" class="col-sm-3 col-form-label">Customer type</label>
+                    <div class="col-sm-9">
+                        <select id="customerType"
+                                class="form-control">
+                            <option value="null">Select Customer type</option>
+                            <option value="1">Diamond</option>
+                            <option value="2">Platinum</option>
+                            <option value="3">Gold</option>
+                            <option value="4">Silver</option>
+                            <option value="5">Member</option>
+                        </select>
                     </div>
                 </div>
                 <div class="d-flex justify-content-center">
@@ -222,7 +193,7 @@
                         <a href="#" class="button button--cancel cancel-banner-btn">Cancel</a>
                     </div>
                     <div class="mx-2">
-                        <a href="#" class="button button--active home-banner-btn">Update</a>
+                        <a href="#" class="button button--active home-banner-btn">Create</a>
                     </div>
                 </div>
             </div>
@@ -327,42 +298,3 @@
 
 </body>
 </html>
-<script>
-    showFacilityType();
-
-    function showFacilityType() {
-        let selected = $("#facilityTypeId").val();
-        if (selected == 3) { // Room
-            $("#villaAndHouseOnly").hide();
-            $("#villaOnly").hide();
-            $("#roomOnly").show();
-            $('#villaAndHouseOnly').find("input").each(function () {
-                $(this).val('');
-            });
-            $('#villaOnly').find("input").each(function () {
-                $(this).val('');
-            });
-        } else if (selected == 2) { //House
-            $("#villaAndHouseOnly").show();
-            $("#villaOnly").hide();
-            $("#roomOnly").hide();
-            $('#villaOnly').find("input").each(function () {
-                $(this).val('');
-            });
-            $('#roomOnly').find("input").each(function () {
-                $(this).val('');
-            });
-        } else if (selected == 1) { //Villa
-            $("#villaAndHouseOnly").show();
-            $("#villaOnly").show();
-            $("#roomOnly").hide();
-            $('#roomOnly').find("input").each(function () {
-                $(this).val('');
-            });
-        }else {
-            $("#villaAndHouseOnly").show();
-            $("#villaOnly").show();
-            $("#roomOnly").show();
-        }
-    }
-</script>

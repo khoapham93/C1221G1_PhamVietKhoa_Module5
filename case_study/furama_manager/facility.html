@@ -18,7 +18,7 @@
 
     <!--    custom css-->
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/style-resort.css" rel="stylesheet">
+    <link href="css/style-three-dots-context.css" rel="stylesheet">
 
 
 </head>
@@ -67,7 +67,7 @@
                     <ul class="nav navbar-nav menu_nav">
                         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                        <li class="nav-item active"><a class="nav-link" href="properties.html">Properties</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="facility.html">Properties</a></li>
                         <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
                         <li class="nav-item submenu dropdown">
                             <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
@@ -322,7 +322,7 @@
                                     </button>
                                     <ul class="navbar-nav mx-auto">
                                         <li class="nav-item">
-                                            <button class="btn btn-warning">
+                                            <button class="btn btn-warning w-100">
                                                 <i class='ti-settings'></i>
                                             </button>
                                         </li>
@@ -346,7 +346,7 @@
 
     </div>
     <!--        paging-->
-    <nav class="d-flex justify-content-center py-3">
+    <nav class="blog-pagination d-flex justify-content-center py-3">
         <ul class="pagination">
             <!--            <li class="page-item active px-1">-->
             <!--                <a th:href="@{/employees(page=${employees.number - 1},-->
@@ -355,7 +355,7 @@
             <!--                                    department=${departmentVal})}" class="page-link">Previous</a>-->
             <!--            </li>-->
             <li class="page-item px-1">
-                <a class="page-link">Previous</a>
+                <a href="#" class="page-link">Previous</a>
             </li>
             <li class="page-item">
                 <a class="page-link">
@@ -365,7 +365,7 @@
                 </a>
             </li>
             <li class="page-item px-1">
-                <a class="page-link">Next</a>
+                <a href="#" class="page-link">Next</a>
             </li>
         </ul>
     </nav>
@@ -463,7 +463,17 @@
 <script src="vendors/jquery.ajaxchimp.min.js"></script>
 <script src="vendors/mail-script.js"></script>
 <script src="js/main.js"></script>
-<script src="js/js-resort.js"></script>
 
 </body>
 </html>
+<script>
+    document.querySelector('.card-all').onclick = ({
+                                                       target
+                                                   }) => {
+        if (!target.classList.contains('more')) return;
+        document.querySelectorAll('.dropout.active').forEach(
+            (d) => d !== target.parentElement && d.classList.remove('active')
+        );
+        target.parentElement.classList.toggle('active');
+    };
+</script>
