@@ -1513,6 +1513,10 @@ button {
     font-size: 14px;
     padding: 8px 40px !important;
 }
+.button-modal {
+    font-size: 13px;
+    padding: 8px 40px !important;
+}
 
 .button-form {
     border: 1px solid #cca772 !important;
@@ -2761,6 +2765,9 @@ button {
     /* Firefox 18- */
     font-size: 13px;
     color: #777;
+}
+.modal {
+    top: 10%;
 }
 
 /*============ End Blog Single Styles  =============*/

@@ -1,0 +1,10 @@
+<input type="Text" [(ngModel)]="calculator.firstNumber">
+<input type="Text" [(ngModel)]="calculator.secondNumber">
+<br>
+
+<button id="add" (click)="compute($event)">Addition(+)</button>
+<button id="sub" (click)="compute($event)">Subtraction(-)</button>
+<button id="mul" (click)="compute($event)">Multiplication(*)</button>
+<button id="div" (click)="compute($event)">Division(/)</button>
+<br>
+<input  [(ngModel)]="result">
