@@ -1,0 +1,8 @@
+<button  (click)="changeColor('blue')">Xanh</button>
+<button (click)="changeColor('red')">Đỏ</button>
+<button  (click)="changeColor('yellow')">Vàng</button>
+<button  (click)="changeColor('purple')">tím</button>
+<button  (click)="changeColor('black')">đen</button>
+<br>
+<br>
+<label [ngStyle]="{'color': color}">hiển thị màu text</label>
