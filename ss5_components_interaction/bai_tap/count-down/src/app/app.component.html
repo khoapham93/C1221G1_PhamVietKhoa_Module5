@@ -1,0 +1,6 @@
+<h1>Countdown Timer</h1>
+<div>
+  {{ countingInProgess.status }}
+</div>
+<p>{{ countingInProgess.remainingTime }}</p>
+<app-count-down (finish)="countDownProgess($event)"></app-count-down>

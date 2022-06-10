@@ -4,7 +4,7 @@
     <div class="container">
       <div class="d-flex align-items-center">
         <div id="logo">
-          <a href="index.html"><img alt="" src="../../assets/img/Logo.png" title=""/></a>
+          <a [routerLink]="['/home']"><img alt="" src="../../assets/img/Logo.png" title=""/></a>
         </div>
         <div class="ml-auto d-none d-md-block d-md-flex">
           <div class="media header-top-info">
@@ -39,38 +39,38 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
           <ul class="nav navbar-nav menu_nav">
-            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item" [routerLinkActive]="'active'"><a class="nav-link" [routerLink]="['/home']">Home</a></li>
             <li class="nav-item submenu dropdown">
               <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
                  data-toggle="dropdown"
                  href="#"
-                 role="button">Facility</a>
+                 role="button">Service</a>
               <ul class="dropdown-menu">
-                <li class="nav-item"><a class="nav-link" href="blog.html">List of Facilities</a></li>
-                <li class="nav-item"><a class="nav-link" href="blog-single.html">Create New Facility</a></li>
+                <li class="nav-item" [routerLinkActive]="['active']"><a class="nav-link" [routerLink]="['/service-list']">List</a></li>
+                <li class="nav-item" [routerLinkActive]="['active']"><a class="nav-link" [routerLink]="['/service-create']">New Service</a></li>
               </ul>
             </li>
-            <li class="nav-item submenu dropdown">
+            <li class="nav-item submenu dropdown" >
               <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
                  data-toggle="dropdown"
                  href="#"
                  role="button">Customer</a>
               <ul class="dropdown-menu">
-                <li class="nav-item"><a class="nav-link" href="blog.html">List of Customers</a></li>
-                <li class="nav-item"><a class="nav-link" href="blog-single.html">Create New Customer</a></li>
+                <li class="nav-item" [routerLinkActive]="['active']" ><a class="nav-link" [routerLink]="['/customer-list']">List</a></li>
+                <li class="nav-item" [routerLinkActive]="['active']" ><a class="nav-link" [routerLink]="['/customer-create']">New Customer</a></li>
               </ul>
             </li>
             <li class="nav-item submenu dropdown">
               <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
                  data-toggle="dropdown"
                  href="#"
-                 role="button">Employee</a>
+                 role="button">Contract</a>
               <ul class="dropdown-menu">
-                <li class="nav-item"><a class="nav-link" href="blog.html">List of Employees</a></li>
-                <li class="nav-item"><a class="nav-link" href="blog-single.html">Create New Employees</a></li>
+                <li class="nav-item" [routerLinkActive]="['active']"><a class="nav-link" [routerLink]="['/contract-list']">List</a></li>
+                <li class="nav-item" [routerLinkActive]="['active']"><a class="nav-link" [routerLink]="['/contract-create']">New Contract</a></li>
               </ul>
             </li>
-            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            <li class="nav-item"><a class="nav-link"[routerLink]="['/home']">About Us</a></li>
           </ul>
         </div>
         <ul class="social-icons ml-auto">

@@ -25,13 +25,13 @@
         <div class="form-group row">
           <label for="facilityTypeId" class="col-sm-3 col-form-label">Service type</label>
           <div class="col-sm-9">
-            <select id="facilityTypeId"
+            <select id="facilityTypeId" [(ngModel)]="idSelected"
                     class="form-control"
-                    (change)="showFacilityType()">
+                    (change)="showFacilityType($event.target.value)">
               <option value="null">Select Facility type</option>
               <option value="1">Villa</option>
               <option value="2">House</option>
-              <option value="null">Room</option>
+              <option value="3">Room</option>
             </select>
           </div>
         </div>
@@ -80,7 +80,7 @@
           </div>
         </div>
         <!--                 House and Villa-->
-        <div id="villaAndHouseOnly">
+        <div id="villaAndHouseOnly" [hidden]="styleVillaAndHouseOnly">
           <div class="form-group row">
             <label for="roomStandard" class="col-sm-3 col-form-label">Room standard</label>
             <div class="col-sm-9">
@@ -101,7 +101,7 @@
           </div>
         </div>
         <!--                Villa-->
-        <div id="villaOnly">
+        <div id="villaOnly" [hidden]="styleVillaOnly">
           <div class="form-group row">
             <label for="poolSquare" class="col-sm-3 col-form-label">Pool square</label>
             <div class="col-sm-9">
@@ -110,7 +110,7 @@
           </div>
         </div>
         <!--                Room-->
-        <div id="roomOnly">
+        <div id="roomOnly" [hidden]="styleRoomOnly">
           <div class="form-group row">
             <label for="freeServiceInclude" class="col-sm-3 col-form-label">Free service include</label>
             <div class="col-sm-9">

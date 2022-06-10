@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 
-declare let showFacilityType: any;
 
 @Component({
   selector: 'app-facilities-create',
@@ -9,16 +8,47 @@ declare let showFacilityType: any;
 })
 export class FacilitiesCreateComponent implements OnInit {
 
+  styleVillaOnly = false;
+  styleRoomOnly = false;
+  styleVillaAndHouseOnly = false;
+  idSelected = 'null';
+
   constructor() {
+    this.showFacilityType(this.idSelected);
   }
 
   ngOnInit(): void {
-    // tslint:disable-next-line:no-unused-expression
-    new showFacilityType();
   }
 
-  showFacilityType() {
-    // tslint:disable-next-line:no-unused-expression
-    new showFacilityType();
+
+  showFacilityType(newValue) {
+    this.idSelected = newValue;
+    console.log(this.idSelected);
+    switch (this.idSelected) {
+      case '3': {
+        this.styleVillaAndHouseOnly = true;
+        this.styleVillaOnly = true;
+        this.styleRoomOnly = false;
+        break;
+      }
+      case '2': {
+        this.styleVillaAndHouseOnly = false;
+        this.styleVillaOnly = true;
+        this.styleRoomOnly = true;
+        break;
+      }
+      case '1': {
+        this.styleVillaAndHouseOnly = false;
+        this.styleVillaOnly = false;
+        this.styleRoomOnly = true;
+        break;
+      }
+      default: {
+        this.styleVillaAndHouseOnly = false;
+        this.styleVillaOnly = false;
+        this.styleRoomOnly = false;
+      }
+
+    }
   }
 }

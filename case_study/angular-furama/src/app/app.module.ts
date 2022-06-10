@@ -11,6 +11,10 @@ import { CustomersListComponent } from './customers/customers-list/customers-lis
 import { CustomesCreateComponent } from './customers/customes-create/customes-create.component';
 import { ContractsListComponent } from './contracts/contracts-list/contracts-list.component';
 import { ContractsCreateComponent } from './contracts/contracts-create/contracts-create.component';
+import {FormsModule} from '@angular/forms';
+import { CustomerEditComponent } from './customers/customer-edit/customer-edit.component';
+import { HomeComponent } from './home/home.component';
+import { FacilitiesEditComponent } from './facilities/facilities-edit/facilities-edit.component';
 
 @NgModule({
   declarations: [
@@ -22,12 +26,16 @@ import { ContractsCreateComponent } from './contracts/contracts-create/contracts
     CustomersListComponent,
     CustomesCreateComponent,
     ContractsListComponent,
-    ContractsCreateComponent
+    ContractsCreateComponent,
+    CustomerEditComponent,
+    HomeComponent,
+    FacilitiesEditComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

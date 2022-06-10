@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare let threeDotForCustomer: any;
 
 @Component({
   selector: 'app-customers-list',
@@ -10,6 +11,9 @@ export class CustomersListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    // tslint:disable-next-line:no-unused-expression
+    new threeDotForCustomer();
+
   }
 
 }
