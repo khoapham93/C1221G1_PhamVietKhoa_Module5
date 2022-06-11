@@ -117,8 +117,8 @@ $(function() {
     $("#mobile-nav, #mobile-nav-toggle").hide();
   }
 
-  //------- Active Nice Select --------//
-  $('select').niceSelect();
+  // //------- Active Nice Select --------//
+  // $('select').niceSelect();
 
   //------- mailchimp --------//
 	function mailChimp() {

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {customers} from '../../data/customers';
+import {Customer} from '../../model/Customer';
+
 declare let threeDotForCustomer: any;
 
 @Component({
@@ -7,8 +10,11 @@ declare let threeDotForCustomer: any;
   styleUrls: ['./customers-list.component.css']
 })
 export class CustomersListComponent implements OnInit {
+  customers = customers;
+  customerDelete = {} as Customer;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
     // tslint:disable-next-line:no-unused-expression
@@ -16,4 +22,7 @@ export class CustomersListComponent implements OnInit {
 
   }
 
+  deleteCustomer(customer: Customer) {
+    this.customerDelete = customer;
+  }
 }

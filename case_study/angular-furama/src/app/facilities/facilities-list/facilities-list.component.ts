@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {facilities} from '../../data/facilities';
+import {Facility} from '../../model/Facility';
 
 declare let threeDotForFacility: any;
 
@@ -8,6 +10,8 @@ declare let threeDotForFacility: any;
   styleUrls: ['./facilities-list.component.css']
 })
 export class FacilitiesListComponent implements OnInit {
+  facilities = facilities;
+  facilityDelete = {} as Facility;
 
   constructor() {
   }
@@ -17,4 +21,7 @@ export class FacilitiesListComponent implements OnInit {
     new threeDotForFacility();
   }
 
+  deleteFacility(facility: Facility) {
+    this.facilityDelete = facility;
+  }
 }
