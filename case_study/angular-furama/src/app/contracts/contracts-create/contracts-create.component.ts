@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Contract} from '../../model/Contract';
+import {Customer} from '../../model/Customer';
+import {Facility} from '../../model/Facility';
+import {CustomerService} from '../../services/CustomerService';
+import {FacilityService} from '../../services/FacilityService';
+import {ContractService} from '../../services/ContractService';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-contracts-create',
@@ -6,10 +13,59 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contracts-create.component.css']
 })
 export class ContractsCreateComponent implements OnInit {
+  submitted = false;
+  contract = {} as Contract;
+  customers: Customer[] = [];
+  facilities: Facility[] = [];
+  contractForm: FormGroup;
+  POSITIVE_DOUBLE_REGEX = '^[+]?(\\d*\\.)?\\d+$';
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private customerService: CustomerService,
+              private facilityService: FacilityService,
+              private contractService: ContractService) {
   }
 
+  ngOnInit(): void {
+    this.customers = this.customerService.getAllCustomer();
+    this.facilities = this.facilityService.getAllFacilities();
+
+    this.contractForm = new FormGroup({
+      customer: new FormControl('', [Validators.required]),
+      facility: new FormControl('', [Validators.required]),
+      startDate: new FormControl('', [Validators.required, Validators.pattern('^\\d{4}-\\d{2}-\\d{2}$')]),
+      endDate: new FormControl('', [Validators.required, Validators.pattern('^\\d{4}-\\d{2}-\\d{2}$')]),
+      deposit: new FormControl('', [Validators.required, Validators.pattern(this.POSITIVE_DOUBLE_REGEX)]),
+    });
+  }
+
+  get customer() {
+    return this.contractForm.get('customer');
+  }
+
+  get facility() {
+    return this.contractForm.get('facility');
+  }
+
+  get startDate() {
+    return this.contractForm.get('startDate');
+  }
+
+  get endDate() {
+    return this.contractForm.get('endDate');
+  }
+
+  get deposit() {
+    return this.contractForm.get('deposit');
+  }
+
+  onSubmit() {
+    this.submitted = true;
+    if (this.contractForm.valid) {
+      this.contract = this.contractForm.value;
+      this.contractService.save(this.contract);
+      alert('Create Successfully');
+      this.ngOnInit();
+      this.submitted = false;
+    }
+  }
 }

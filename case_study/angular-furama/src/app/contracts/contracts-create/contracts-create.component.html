@@ -27,68 +27,104 @@
     </div>
     <div class="col-8 mx-auto">
       <div class="mx-auto shadow-lg p-3 mb-5 bg-white rounded-lg">
-        <div class="form-group row">
-          <label for="startDate" class="col-sm-3 col-form-label">Start Date</label>
-          <div class="col-sm-9">
-            <input type="date" class="form-control" id="startDate">
+        <form [formGroup]="contractForm" (ngSubmit)="onSubmit()" novalidate>
+          <div class="form-group row">
+            <label for="startDate" class="col-sm-3 col-form-label">Start Date</label>
+            <div class="col-sm-9">
+              <input type="date" class="form-control" id="startDate" formControlName="startDate"
+                     [class.is-invalid]='(startDate.touched || startDate.dirty||submitted) && startDate.invalid'
+                     [class.is-valid]='startDate.valid'>
+              <div *ngIf='!startDate.valid && (startDate.dirty ||startDate.touched||submitted)'>
+                <small [hidden]='!startDate.errors.pattern' class="text-danger">
+                  Start date is Wrong format
+                </small>
+                <small [hidden]='!startDate.errors.required' class="text-danger">
+                  Start date is required
+                </small>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for="endDate" class="col-sm-3 col-form-label">End Date</label>
-          <div class="col-sm-9">
-            <input type="date" class="form-control" id="endDate">
+          <div class="form-group row">
+            <label for="endDate" class="col-sm-3 col-form-label">End Date</label>
+            <div class="col-sm-9">
+              <input type="date" class="form-control" id="endDate" formControlName="endDate"
+                     [class.is-invalid]='(endDate.touched || endDate.dirty||submitted) && endDate.invalid'
+                     [class.is-valid]='endDate.valid'>
+              <div *ngIf='!endDate.valid && (endDate.dirty ||endDate.touched||submitted)'>
+                <small [hidden]='!endDate.errors.pattern' class="text-danger">
+                  End date is Wrong format
+                </small>
+                <small [hidden]='!endDate.errors.required' class="text-danger">
+                  End date is required
+                </small>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for="deposit" class="col-sm-3 col-form-label">Deposit</label>
-          <div class="col-sm-9">
-            <input type="number" class="form-control" id="deposit" step="any">
+          <div class="form-group row">
+            <label for="deposit" class="col-sm-3 col-form-label">Deposit</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="deposit" formControlName="deposit"
+                     [class.is-invalid]='(deposit.touched || deposit.dirty||submitted) && deposit.invalid'
+                     [class.is-valid]='deposit.valid'>
+              <div *ngIf='!deposit.valid && (deposit.dirty ||deposit.touched||submitted)'>
+                <small [hidden]='!deposit.errors.pattern' class="text-danger">
+                  Deposit must be a positive number
+                </small>
+                <small [hidden]='!deposit.errors.required' class="text-danger">
+                  Deposit is required
+                </small>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for="employee" class="col-sm-3 col-form-label">Employee Create</label>
-          <div class="col-sm-9">
-            <select class="form-control"
-                    id="employee"
-                    name="employee">
-              <option value="null">Select Employee</option>
-              <option value="1">Pham Viet Khoa</option>
-              <option value="2">Khoa Pham</option>
-            </select>
+          <div class="form-group row">
+            <label for="customer" class="col-sm-3 col-form-label">Customer booking</label>
+            <div class="col-sm-9">
+              <select class="form-control"
+                      id="customer"
+                      name="customer"
+                      formControlName="customer"
+                      [class.is-invalid]='(customer.touched || customer.dirty||submitted) && customer.invalid'
+                      [class.is-valid]='customer.valid'>
+                <option value="">Select Customer</option>
+                <option *ngFor="let customer of customers" [ngValue]="customer">{{customer.name}}</option>
+              </select>
+              <div *ngIf='!customer.valid && (customer.dirty ||customer.touched||submitted)'>
+                <small [hidden]='!customer.errors.required' class="text-danger">
+                  Customer is required
+                </small>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for="customer" class="col-sm-3 col-form-label">Customer booking</label>
-          <div class="col-sm-9">
-            <select class="form-control"
-                    id="customer"
-                    name="customer">
-              <option value="null">Select Customer</option>
-              <option value="1">Pham Viet Khoa</option>
-              <option value="2">Khoa Pham</option>
-            </select>
+          <div class="form-group row">
+            <label for="facility" class="col-sm-3 col-form-label">Service</label>
+            <div class="col-sm-9">
+              <select class="form-control"
+                      id="facility"
+                      name="facility"
+                      formControlName="facility"
+                      [class.is-invalid]='(facility.touched || facility.dirty||submitted) && facility.invalid'
+                      [class.is-valid]='facility.valid'>
+                <option value="">Select Service</option>
+                <option *ngFor="let facility of facilities" [ngValue]="facility">{{facility.name}}</option>
+              </select>
+              <div *ngIf='!facility.valid && (facility.dirty ||facility.touched||submitted)'>
+                <small [hidden]='!facility.errors.required' class="text-danger">
+                  Facility is required
+                </small>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for="facility" class="col-sm-3 col-form-label">Service</label>
-          <div class="col-sm-9">
-            <select class="form-control"
-                    id="facility"
-                    name="facility">
-              <option value="null">Select Service</option>
-              <option value="1">Villa River Side</option>
-              <option value="2">Room Street view</option>
-            </select>
+          <div class="d-flex justify-content-center">
+            <div class="mx-2">
+              <a [routerLink]="['/contract-list']" class="button button--cancel cancel-banner-btn">Cancel</a>
+            </div>
+            <div class="mx-2">
+              <button class="button button--active home-banner-btn" type="submit">
+                Create
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="d-flex justify-content-center">
-          <div class="mx-2">
-            <a href="#" class="button button--cancel cancel-banner-btn">Cancel</a>
-          </div>
-          <div class="mx-2">
-            <a href="#" class="button button--active home-banner-btn">Create</a>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
 

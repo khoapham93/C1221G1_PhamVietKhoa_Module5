@@ -30,7 +30,7 @@
             <div class="card-body">
               <h3 class="card-explore__price">{{facility.rentalFee|currency: "VND"}} <sub>/Night</sub></h3>
               <div class="d-flex justify-content-between align-items-center">
-                <h4 class="card-explore__title"><a href="#">{{facility.name}}</a></h4>
+                <h4 class="card-explore__title"><a href="#">{{facility.name}}&nbsp;</a><span class="badge badge-warning">{{facility.facilityType.facilityType}}</span></h4>
                 <div class="dropout d-flex align-items-center">
                   <button class="more">
                     <span></span>
@@ -39,9 +39,9 @@
                   </button>
                   <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                      <button class="btn btn-warning">
+                      <a class="btn btn-warning" [routerLink]="['/service-update',facility.id]">
                         <i class='ti-settings'></i>
-                      </button>
+                      </a>
                     </li>
                     <li class="nav-item">
                       <button class="btn btn-danger" data-target="#deleteModal"
@@ -53,6 +53,8 @@
                   </ul>
                 </div>
               </div>
+              <p>Floor square: <span>{{facility.floorSquare|number}} m<sup>2</sup></span></p>
+              <p>Maximum people: <span>{{facility.maximumPeople}}</span></p>
               <p>Beginning fourth dominion creeping god was. Beginning, which fly yieldi dry beast moved
                 blessed </p>
             </div>

@@ -266,18 +266,8 @@ export class CustomerService {
   }
 
   public delete(customer: Customer) {
-    let check = false;
-    for (let i = 0; i < this.customers.length; i++) {
-      if (customer[i].id === customer.id) {
-        this.customers = this.customers.filter(element => {
-          return element.id !== customer.id;
-        });
-        check = true;
-        break;
-      }
-    }
-    if (check !== true) {
-      alert('Something went wrong. Please try again!');
-    }
+    this.customers = this.customers.filter(element => {
+      return element.id !== customer.id;
+    });
   }
 }

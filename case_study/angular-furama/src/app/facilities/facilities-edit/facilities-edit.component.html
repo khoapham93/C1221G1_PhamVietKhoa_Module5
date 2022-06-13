@@ -22,111 +22,221 @@
     </div>
     <div class="col-8 mx-auto">
       <div class="mx-auto shadow-lg p-3 mb-5 bg-white rounded-lg">
-        <input type="hidden" name="id"/>
-        <div class="form-group row">
-          <label for="facilityTypeId" class="col-sm-3 col-form-label">Service type</label>
-          <div class="col-sm-9">
-            <select id="facilityTypeId"
-                    class="form-control"
-                    onchange="showFacilityType()">
-              <option value="null">Select Facility type</option>
-              <option value="1">Villa</option>
-              <option value="2">House</option>
-              <option value="null">Room</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="name" class="col-sm-3 col-form-label">Name</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" id="name">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="code" class="col-sm-3 col-form-label">Code</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" id="code">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="floorSquare" class="col-sm-3 col-form-label">Floor square</label>
-          <div class="col-sm-9">
-            <input type="number" class="form-control" id="floorSquare">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="rentalFee" class="col-sm-3 col-form-label">Rental Fee</label>
-          <div class="col-sm-9">
-            <input type="number" class="form-control" id="rentalFee" step="any">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="maximumPeople" class="col-sm-3 col-form-label">Maximum people</label>
-          <div class="col-sm-9">
-            <input type="number" class="form-control" id="maximumPeople">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="rentType" class="col-sm-3 col-form-label">Service type</label>
-          <div class="col-sm-9">
-            <select class="form-control"
-                    id="rentType"
-                    name="rentType">
-              <option value="null">Select Rent type</option>
-              <option value="1">Hour</option>
-              <option value="2">Day</option>
-              <option value="3">Month</option>
-              <option value="4">Year</option>
-            </select>
-          </div>
-        </div>
-        <!--                 House and Villa-->
-        <div id="villaAndHouseOnly">
+        <form [formGroup]="facilityForm" (ngSubmit)="onSubmit()" novalidate>
           <div class="form-group row">
-            <label for="roomStandard" class="col-sm-3 col-form-label">Room standard</label>
+            <label for="facilityTypeId" class="col-sm-3 col-form-label">Service type</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="roomStandard">
+              <select id="facilityTypeId"
+                      class="form-control"
+                      [compareWith]="compareByID"
+                      (ngModelChange)="showFacilityType($event)"
+                      formControlName="facilityType"
+                      [class.is-invalid]='(facilityType.touched || facilityType.dirty||submitted) && facilityType.invalid'
+                      [class.is-valid]='facilityType.valid'>
+                <option value="">Select Facility type</option>
+                <option *ngFor="let facilityType of facilityTypes"
+                        [ngValue]="facilityType">{{facilityType.facilityType}}</option>
+              </select>
+
+              <div *ngIf='!facilityType.valid && (facilityType.dirty ||facilityType.touched||submitted)'>
+                <small [hidden]='!facilityType.errors.required' class="text-danger">
+                  Service type is required
+                </small>
+              </div>
             </div>
           </div>
           <div class="form-group row">
-            <label for="description" class="col-sm-3 col-form-label">Description</label>
+            <label for="name" class="col-sm-3 col-form-label">Name</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="description">
+              <input type="text" class="form-control" id="name" formControlName="name"
+                     [class.is-invalid]='(name.touched || name.dirty||submitted) && name.invalid'
+                     [class.is-valid]='name.valid'>
+              <div *ngIf='!name.valid && (name.dirty ||name.touched||submitted)'>
+                <small [hidden]='!name.errors.pattern' class="text-danger">
+                  Name is Wrong format
+                </small>
+                <small [hidden]='!name.errors.required' class="text-danger">
+                  Name is required
+                </small>
+              </div>
             </div>
           </div>
           <div class="form-group row">
-            <label for="numberFloor" class="col-sm-3 col-form-label">Number of floor</label>
+            <label for="code" class="col-sm-3 col-form-label">Code</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="numberFloor">
+              <input type="text" class="form-control" id="code" formControlName="code"
+                     [class.is-invalid]='(code.touched || code.dirty||submitted) && code.invalid'
+                     [class.is-valid]='code.valid'>
+              <div *ngIf='!code.valid && (code.dirty ||code.touched||submitted)'>
+                <small [hidden]='!code.errors.pattern' class="text-danger">
+                  Code is Wrong format
+                </small>
+                <small [hidden]='!code.errors.required' class="text-danger">
+                  Code is required
+                </small>
+              </div>
             </div>
           </div>
-        </div>
-        <!--                Villa-->
-        <div id="villaOnly">
           <div class="form-group row">
-            <label for="poolSquare" class="col-sm-3 col-form-label">Pool square</label>
+            <label for="floorSquare" class="col-sm-3 col-form-label">Floor square</label>
             <div class="col-sm-9">
-              <input type="number" class="form-control" id="poolSquare">
+              <input type="text" class="form-control" id="floorSquare" formControlName="floorSquare"
+                     [class.is-invalid]='(floorSquare.touched || floorSquare.dirty||submitted) && floorSquare.invalid'
+                     [class.is-valid]='floorSquare.valid'>
+              <div *ngIf='!floorSquare.valid && (floorSquare.dirty ||floorSquare.touched||submitted)'>
+                <small [hidden]='!floorSquare.errors.pattern' class="text-danger">
+                  Floor square must be positive
+                </small>
+                <small [hidden]='!floorSquare.errors.required' class="text-danger">
+                  Floor square is required
+                </small>
+              </div>
             </div>
           </div>
-        </div>
-        <!--                Room-->
-        <div id="roomOnly">
           <div class="form-group row">
-            <label for="freeServiceInclude" class="col-sm-3 col-form-label">Free service include</label>
+            <label for="rentalFee" class="col-sm-3 col-form-label">Rental Fee</label>
             <div class="col-sm-9">
-              <input type="number" class="form-control" id="freeServiceInclude">
+              <input type="text" class="form-control" id="rentalFee" step="any" formControlName="rentalFee"
+                     [class.is-invalid]='(rentalFee.touched || rentalFee.dirty||submitted) && rentalFee.invalid'
+                     [class.is-valid]='rentalFee.valid'>
+              <div *ngIf='!rentalFee.valid && (rentalFee.dirty ||rentalFee.touched||submitted)'>
+                <small [hidden]='!rentalFee.errors.pattern' class="text-danger">
+                  Rental Fee must be positive
+                </small>
+                <small [hidden]='!rentalFee.errors.required' class="text-danger">
+                  Rental Fee is required
+                </small>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="d-flex justify-content-center">
-          <div class="mx-2">
-            <a href="#" class="button button--cancel cancel-banner-btn">Cancel</a>
+          <div class="form-group row">
+            <label for="maximumPeople" class="col-sm-3 col-form-label">Maximum people</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="maximumPeople" formControlName="maximumPeople"
+                     [class.is-invalid]='(maximumPeople.touched || maximumPeople.dirty||submitted) && maximumPeople.invalid'
+                     [class.is-valid]='maximumPeople.valid'>
+              <div *ngIf='!maximumPeople.valid && (maximumPeople.dirty ||maximumPeople.touched||submitted)'>
+                <small [hidden]='!maximumPeople.errors.pattern' class="text-danger">
+                  Maximum people must be positive
+                </small>
+                <small [hidden]='!maximumPeople.errors.required' class="text-danger">
+                  Maximum people is required
+                </small>
+              </div>
+            </div>
           </div>
-          <div class="mx-2">
-            <a href="#" class="button button--active home-banner-btn">Update</a>
+          <div class="form-group row">
+            <label for="rentType" class="col-sm-3 col-form-label">Rent type</label>
+            <div class="col-sm-9">
+              <select class="form-control"
+                      id="rentType"
+                      name="rentType"
+                      formControlName="rentType"
+                      [compareWith]="compareByID"
+                      [class.is-invalid]='(rentType.touched || rentType.dirty||submitted) && rentType.invalid'
+                      [class.is-valid]='rentType.valid'>
+                <option value="">Select Rent type</option>
+                <option *ngFor="let rentType of rentTypes" [ngValue]="rentType">{{rentType.rentType}}</option>
+              </select>
+              <div *ngIf='!rentType.valid && (rentType.dirty ||rentType.touched||submitted)'>
+                <small [hidden]='!rentType.errors.required' class="text-danger">
+                  Rent type is required
+                </small>
+              </div>
+            </div>
           </div>
-        </div>
+          <!--                 House and Villa-->
+          <div id="villaAndHouseOnly" [hidden]="styleVillaAndHouseOnly">
+            <div class="form-group row">
+              <label for="roomStandard" class="col-sm-3 col-form-label">Room standard</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="roomStandard" formControlName="roomStandard"
+                       [class.is-invalid]='(roomStandard.touched || roomStandard.dirty||submitted) && roomStandard.invalid'
+                       [class.is-valid]='roomStandard.valid'>
+                <div *ngIf='!roomStandard.valid && (roomStandard.dirty ||roomStandard.touched||submitted)'>
+                  <small [hidden]='!roomStandard.errors.required' class="text-danger">
+                    Room standard is required
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="description" class="col-sm-3 col-form-label">Description</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="description" formControlName="description"
+                       [class.is-invalid]='(description.touched || description.dirty||submitted) && description.invalid'
+                       [class.is-valid]='description.valid'>
+                <div *ngIf='!description.valid && (description.dirty ||description.touched||submitted)'>
+                  <small [hidden]='!description.errors.required' class="text-danger">
+                    Description is required
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="numberFloor" class="col-sm-3 col-form-label">Number of floor</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="numberFloor" formControlName="numberFloor"
+                       [class.is-invalid]='(numberFloor.touched || numberFloor.dirty||submitted) && numberFloor.invalid'
+                       [class.is-valid]='numberFloor.valid'>
+                <div *ngIf='!numberFloor.valid && (numberFloor.dirty ||numberFloor.touched||submitted)'>
+                  <small [hidden]='!numberFloor.errors.pattern' class="text-danger">
+                    Number of floor must be positive
+                  </small>
+                  <small [hidden]='!numberFloor.errors.required' class="text-danger">
+                    Number of floor is required
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--                Villa-->
+          <div id="villaOnly" [hidden]="styleVillaOnly">
+            <div class="form-group row">
+              <label for="poolSquare" class="col-sm-3 col-form-label">Pool square</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="poolSquare" formControlName="poolSquare"
+                       [class.is-invalid]='(poolSquare.touched || poolSquare.dirty||submitted) && poolSquare.invalid'
+                       [class.is-valid]='poolSquare.valid'>
+                <div *ngIf='!poolSquare.valid && (poolSquare.dirty ||poolSquare.touched||submitted)'>
+                  <small [hidden]='!poolSquare.errors.pattern' class="text-danger">
+                    Pool square must be positive
+                  </small>
+                  <small [hidden]='!poolSquare.errors.required' class="text-danger">
+                    Pool square is required
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--                Room-->
+          <div id="roomOnly" [hidden]="styleRoomOnly">
+            <div class="form-group row">
+              <label for="freeServiceInclude" class="col-sm-3 col-form-label">Free service include</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="freeServiceInclude" formControlName="freeServiceInclude"
+                       [class.is-invalid]='(freeServiceInclude.touched || freeServiceInclude.dirty||submitted) && freeServiceInclude.invalid'
+                       [class.is-valid]='freeServiceInclude.valid'>
+                <div
+                  *ngIf='!freeServiceInclude.valid && (freeServiceInclude.dirty ||freeServiceInclude.touched||submitted)'>
+                  <small [hidden]='!freeServiceInclude.errors.required' class="text-danger">
+                    Free service include is required
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+            <div class="mx-2">
+              <a [routerLink]="['/facility-list']" class="button button--cancel cancel-banner-btn">Cancel</a>
+            </div>
+            <div class="mx-2">
+              <button class="button button--active home-banner-btn" type="submit">
+                Update
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
 

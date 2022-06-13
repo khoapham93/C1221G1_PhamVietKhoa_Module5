@@ -17,7 +17,11 @@ import {HomeComponent} from './home/home.component';
 import {FacilitiesEditComponent} from './facilities/facilities-edit/facilities-edit.component';
 import {CustomerService} from './services/CustomerService';
 import {CustomerTypeService} from './services/CustomerTypeService';
-import { ErrorComponent } from './error/error.component';
+import {ErrorComponent} from './error/error.component';
+import {FacilityService} from './services/FacilityService';
+import {FacilityTypeService} from './services/FacilityTypeService';
+import {RentTypeService} from './services/RentTypeService';
+import {ContractService} from './services/ContractService';
 
 @NgModule({
   declarations: [
@@ -43,7 +47,11 @@ import { ErrorComponent } from './error/error.component';
   ],
   providers: [
     CustomerService,
-    CustomerTypeService],
+    CustomerTypeService,
+    FacilityService,
+    FacilityTypeService,
+    RentTypeService,
+    ContractService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
