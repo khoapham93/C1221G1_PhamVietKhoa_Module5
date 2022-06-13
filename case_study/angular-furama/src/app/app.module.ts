@@ -17,6 +17,7 @@ import {HomeComponent} from './home/home.component';
 import {FacilitiesEditComponent} from './facilities/facilities-edit/facilities-edit.component';
 import {CustomerService} from './services/CustomerService';
 import {CustomerTypeService} from './services/CustomerTypeService';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {CustomerTypeService} from './services/CustomerTypeService';
     ContractsCreateComponent,
     CustomerEditComponent,
     HomeComponent,
-    FacilitiesEditComponent
+    FacilitiesEditComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

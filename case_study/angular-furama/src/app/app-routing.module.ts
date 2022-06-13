@@ -9,7 +9,8 @@ import {ContractsListComponent} from './contracts/contracts-list/contracts-list.
 import {ContractsCreateComponent} from './contracts/contracts-create/contracts-create.component';
 import {CustomerEditComponent} from './customers/customer-edit/customer-edit.component';
 import {HomeComponent} from './home/home.component';
-import { FacilitiesEditComponent } from './facilities/facilities-edit/facilities-edit.component';
+import {FacilitiesEditComponent} from './facilities/facilities-edit/facilities-edit.component';
+import {ErrorComponent} from './error/error.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'service-edit/:id', component: FacilitiesEditComponent},
   {path: 'contract-list', component: ContractsListComponent},
   {path: 'contract-create', component: ContractsCreateComponent},
+  {path: 'error', component: ErrorComponent},
 ];
 
 @NgModule({

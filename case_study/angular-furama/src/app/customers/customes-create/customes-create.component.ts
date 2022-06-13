@@ -12,7 +12,6 @@ import {CustomerTypeService} from '../../services/CustomerTypeService';
 })
 export class CustomesCreateComponent implements OnInit {
   submitted = false;
-  // vietnameseNameRegex = '^\\p{Lu}\\p{Ll}+( \\p{Lu}\\p{Ll}*)*$';
   customer = {} as Customer;
   customerTypes: CustomerType[] = [];
   customerForm: FormGroup;
@@ -33,7 +32,7 @@ export class CustomesCreateComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       address: new FormControl('', [Validators.required]),
       customerType: new FormControl('', [Validators.required]),
-      gender: new FormControl('', [Validators.required])
+      gender: new FormControl(-1, [Validators.required])
     });
   }
 
@@ -73,9 +72,9 @@ export class CustomesCreateComponent implements OnInit {
     return this.customerForm.get('code');
   }
 
-  get f() {
-    return this.customerForm.value;
-  }
+  // get f() {
+  //   return this.customerForm.value;
+  // }
 
   onSubmit() {
     this.submitted = true;

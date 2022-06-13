@@ -116,7 +116,7 @@
                      [class.is-valid]="email.valid">
 
               <div *ngIf="!email.valid && (email.dirty || email.touched||submitted)">
-                <small class="text-danger" [hidden]="!email.errors.pattern">
+                <small class="text-danger" [hidden]="!email.errors.email">
                   Email is wrong format
                 </small>
                 <small class="text-danger" [hidden]="!email.errors.required">
@@ -167,8 +167,9 @@
                       formControlName="customerType"
                       [class.is-invalid]="(customerType.touched||submitted || customerType.dirty) && customerType.invalid"
                       [class.is-valid]="customerType.valid">
+                <option value="">Select Customer Type</option>
                 <option *ngFor="let typeOfCustomer of customerTypes"
-                        [ngValue]='typeOfCustomer'>{{typeOfCustomer.type}}</option>
+                        [ngValue]="typeOfCustomer">{{typeOfCustomer.type}}</option>
               </select>
               <div *ngIf="!customerType.valid && (customerType.dirty ||customerType.touched||submitted)">
                 <small class="text-danger" [hidden]="!customerType.errors.required">
