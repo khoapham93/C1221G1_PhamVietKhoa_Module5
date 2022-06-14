@@ -1,0 +1,7 @@
+<h1>Danh sách Các từ</h1>
+<ul>
+  <li *ngFor="let dictionary of dictionaries">
+    <a [routerLink]="['/dictionary/detail',dictionary.word]">{{dictionary.word}}</a>
+  </li>
+</ul>
+

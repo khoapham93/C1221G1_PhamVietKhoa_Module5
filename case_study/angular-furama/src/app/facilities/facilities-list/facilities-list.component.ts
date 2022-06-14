@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {facilities} from '../../data/facilities';
 import {Facility} from '../../model/Facility';
 import {FacilityService} from '../../services/FacilityService';
+import {Customer} from '../../model/Customer';
 
 declare let threeDotForFacility: any;
 
@@ -23,7 +24,16 @@ export class FacilitiesListComponent implements OnInit {
     new threeDotForFacility();
   }
 
-  deleteFacility(facility: Facility) {
+  getFacility(facility: Facility) {
     this.facilityDelete = facility;
+  }
+  deleteFacility(facilityDelete: Facility) {
+    const check = this.facilityService.findById(facilityDelete.id) === undefined;
+    if (check) {
+      alert('can not found');
+    } else {
+      this.facilityService.delete(facilityDelete);
+      this.ngOnInit();
+    }
   }
 }

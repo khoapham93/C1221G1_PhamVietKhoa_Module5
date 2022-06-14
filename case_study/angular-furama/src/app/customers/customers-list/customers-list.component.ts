@@ -33,6 +33,5 @@ export class CustomersListComponent implements OnInit {
       this.customerService.delete(customerDelete);
       this.ngOnInit();
     }
-
   }
 }
