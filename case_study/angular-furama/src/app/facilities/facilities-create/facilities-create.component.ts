@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {FacilityService} from '../../services/FacilityService';
-import {FacilityTypeService} from '../../services/FacilityTypeService';
-import {RentTypeService} from '../../services/RentTypeService';
-import {Facility} from '../../model/Facility';
-import {FacilityType} from '../../model/FacilityType';
-import {RentType} from '../../model/RentType';
+import {FacilityService} from '../FacilityService';
+import {FacilityTypeService} from '../FacilityTypeService';
+import {RentTypeService} from '../RentTypeService';
+import {Facility} from '../Facility';
+import {FacilityType} from '../FacilityType';
+import {RentType} from '../RentType';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 

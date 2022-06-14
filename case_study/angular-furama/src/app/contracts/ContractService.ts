@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Contract} from '../model/Contract';
+import {Contract} from './Contract';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class ContractService {
   private contracts: Contract[] = [
     {
@@ -263,6 +263,7 @@ export class ContractService {
   public getAllContract() {
     return this.contracts;
   }
+
   public findById(id: number): Contract {
     return this.contracts.find(contract => contract.id === id);
   }

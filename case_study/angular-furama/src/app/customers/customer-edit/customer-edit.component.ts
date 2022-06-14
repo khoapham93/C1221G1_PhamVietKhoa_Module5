@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Customer} from '../../model/Customer';
-import {CustomerType} from '../../model/CustomerType';
+import {Customer} from '../Customer';
+import {CustomerType} from '../CustomerType';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Route, Router} from '@angular/router';
-import {CustomerService} from '../../services/CustomerService';
-import {CustomerTypeService} from '../../services/CustomerTypeService';
+import {CustomerService} from '../CustomerService';
+import {CustomerTypeService} from '../CustomerTypeService';
 
 @Component({
   selector: 'app-customer-edit',
@@ -92,7 +92,7 @@ export class CustomerEditComponent implements OnInit {
       this.customer.id = this.id;
       console.log(this.customer);
       this.customerService.save(this.customer);
-      this.route.navigate(['/customer-list']);
+      this.route.navigate(['/customer/list']);
     }
   }
 }

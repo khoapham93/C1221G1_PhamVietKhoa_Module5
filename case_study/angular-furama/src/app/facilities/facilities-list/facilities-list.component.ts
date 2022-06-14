@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {facilities} from '../../data/facilities';
-import {Facility} from '../../model/Facility';
-import {FacilityService} from '../../services/FacilityService';
-import {Customer} from '../../model/Customer';
+import {Facility} from '../Facility';
+import {FacilityService} from '../FacilityService';
+import {Customer} from '../../customers/Customer';
 
 declare let threeDotForFacility: any;
 

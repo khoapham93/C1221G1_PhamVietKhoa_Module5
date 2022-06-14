@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Contract} from '../../model/Contract';
-import {Customer} from '../../model/Customer';
-import {Facility} from '../../model/Facility';
-import {CustomerService} from '../../services/CustomerService';
-import {FacilityService} from '../../services/FacilityService';
-import {ContractService} from '../../services/ContractService';
+import {Contract} from '../Contract';
+import {Customer} from '../../customers/Customer';
+import {Facility} from '../../facilities/Facility';
+import {CustomerService} from '../../customers/CustomerService';
+import {FacilityService} from '../../facilities/FacilityService';
+import {ContractService} from '../ContractService';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({

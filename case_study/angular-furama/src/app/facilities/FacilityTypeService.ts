@@ -1,8 +1,10 @@
 import {Injectable} from '@angular/core';
 
-import {FacilityType} from '../model/FacilityType';
+import {FacilityType} from './FacilityType';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class FacilityTypeService {
   private facilityTypes: FacilityType[] = [
     {

@@ -1,7 +1,9 @@
 import {Injectable} from '@angular/core';
-import {RentType} from '../model/RentType';
+import {RentType} from './RentType';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class RentTypeService {
   private rentTypes: RentType[] = [
     {

@@ -1,7 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Customer} from '../model/Customer';
+import {Customer} from './Customer';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CustomerService {
   private customers: Customer[] = [
     {

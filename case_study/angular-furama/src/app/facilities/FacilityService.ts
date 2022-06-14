@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Facility} from '../model/Facility';
+import {Facility} from './Facility';
 
 const imageArray: string[] = [
   '../../../assets/img/home/explore1.png',
@@ -14,7 +14,9 @@ function randomImage(): string {
   return imageArray[Math.floor(Math.random() * imageArray.length)];
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class FacilityService {
 
   private facilities: Facility[] = [

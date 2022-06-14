@@ -1,4 +1,4 @@
-import {Facility} from '../model/Facility';
+import {Facility} from '../facilities/Facility';
 
 const imageArray: string[] = [
   '../../../assets/img/home/explore1.png',

@@ -1,7 +1,9 @@
-import {CustomerType} from '../model/CustomerType';
+import {CustomerType} from './CustomerType';
 import {Injectable} from '@angular/core';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CustomerTypeService {
   private customerTypes: CustomerType[] = [
     {

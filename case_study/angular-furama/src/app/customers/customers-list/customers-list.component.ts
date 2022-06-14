@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Customer} from '../../model/Customer';
-import {CustomerService} from '../../services/CustomerService';
+import {Customer} from '../Customer';
+import {CustomerService} from '../CustomerService';
 
 declare let threeDotForCustomer: any;
 @Component({

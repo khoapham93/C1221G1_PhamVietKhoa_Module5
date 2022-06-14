@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Facility} from '../../model/Facility';
-import {FacilityType} from '../../model/FacilityType';
-import {RentType} from '../../model/RentType';
+import {Facility} from '../Facility';
+import {FacilityType} from '../FacilityType';
+import {RentType} from '../RentType';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {FacilityService} from '../../services/FacilityService';
-import {FacilityTypeService} from '../../services/FacilityTypeService';
-import {RentTypeService} from '../../services/RentTypeService';
+import {FacilityService} from '../FacilityService';
+import {FacilityTypeService} from '../FacilityTypeService';
+import {RentTypeService} from '../RentTypeService';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
@@ -153,7 +153,7 @@ export class FacilitiesEditComponent implements OnInit {
       this.facility = this.facilityForm.value;
       this.facility.id = this.id;
       this.facilityService.save(this.facility);
-      this.route.navigate(['/service-list']);
+      this.route.navigate(['/service/list']);
     }
   }
 
