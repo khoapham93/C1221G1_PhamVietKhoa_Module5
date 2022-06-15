@@ -1,0 +1,40 @@
+<h1>Danh sách danh mục sản phẩm</h1>
+<a routerLink="/category/create">Tạo mới danh mục</a>
+<table class="table">
+  <tr>
+    <td>STT</td>
+    <td>Tên</td>
+    <td colspan="2"></td>
+  </tr>
+  <tr *ngFor="let category of categories; index as i">
+    <td>{{i + 1}}</td>
+    <td>{{category.name}}</td>
+    <td><a [routerLink]="['/category/edit',category.id]">Chỉnh sửa</a></td>
+    <td>
+      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"
+              (click)="getCategory(category)">
+        Xóa
+      </button>
+    </td>
+  </tr>
+</table>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Xóa sản phẩm</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn có muốn xóa sản phẩm <span>{{categoryDelete.name}}</span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button  (click)="delete(categoryDelete)" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
