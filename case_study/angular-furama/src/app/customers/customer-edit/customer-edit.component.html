@@ -40,17 +40,17 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="code" class="col-sm-3 col-form-label">Code</label>
+            <label for="customer_code" class="col-sm-3 col-form-label">Code</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="code" formControlName="code"
-                     [class.is-invalid]="(code.touched || code.dirty||submitted) && code.invalid"
-                     [class.is-valid]="code.valid">
-              <div *ngIf="!code.valid && (code.dirty ||code.touched||submitted)">
-                <small class="text-danger" [hidden]="!code.errors.pattern">
-                  Code is wrong format (KH-XXXX)
+              <input type="text" class="form-control" id="customer_code" formControlName="customer_code"
+                     [class.is-invalid]="(customer_code.touched || customer_code.dirty||submitted) && customer_code.invalid"
+                     [class.is-valid]="customer_code.valid">
+              <div *ngIf="!customer_code.valid && (customer_code.dirty ||customer_code.touched||submitted)">
+                <small class="text-danger" [hidden]="!customer_code.errors.pattern">
+                  customer_code is wrong format (KH-XXXX)
                 </small>
-                <small class="text-danger" [hidden]="!code.errors.required">
-                  Code is required
+                <small class="text-danger" [hidden]="!customer_code.errors.required">
+                  customer_code is required
                 </small>
               </div>
             </div>

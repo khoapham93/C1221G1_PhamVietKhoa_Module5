@@ -2,8 +2,10 @@ import {Injectable} from '@angular/core';
 import {Customer} from './Customer';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {Page} from 'ngx-pagination/dist/pagination-controls.directive';
 
 const API_URL = 'http://localhost:3000';
+const API_URL_WEBSERVICE = 'http://localhost:8080';
 
 
 @Injectable({
@@ -246,8 +248,13 @@ export class CustomerService {
   constructor(private http: HttpClient) {
   }
 
-  public getAllCustomer(): Observable<Customer[]> {
+  public getAllCustomerJson(): Observable<Customer[]> {
     return this.http.get<Customer[]>(`${API_URL}/customers`);
+    // return this.http.get<Customer[]>(`${API_URL_WEBSERVICE}/customerRes`);
+  }
+  public getAllCustomer(request): Observable<any> {
+    const params = request;
+    return this.http.get<Page>(`${API_URL_WEBSERVICE}/customerRes`, {params});
   }
 
   public findById(id: number): Observable<Customer> {
@@ -264,6 +271,7 @@ export class CustomerService {
   }
 
   public delete(customer: Customer): Observable<Customer> {
-    return this.http.delete<Customer>(`${API_URL}/customers/${customer.id}`);
+    // return this.http.delete<Customer>(`${API_URL}/customers/${customer.id}`);
+    return this.http.delete<Customer>(`${API_URL_WEBSERVICE}/customerRes/${customer.id}`);
   }
 }

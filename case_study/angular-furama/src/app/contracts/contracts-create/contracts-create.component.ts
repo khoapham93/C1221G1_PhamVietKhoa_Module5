@@ -26,7 +26,7 @@ export class ContractsCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.customerService.getAllCustomer().subscribe(customers => {
+    this.customerService.getAllCustomerJson().subscribe(customers => {
       this.customers = customers;
     });
     this.facilityService.getAllFacilities().subscribe(facilities => {

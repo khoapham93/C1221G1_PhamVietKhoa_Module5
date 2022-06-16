@@ -9,7 +9,7 @@ export const contracts: Contract[] = [
     total: 1000000,
     customer: {
       id: 1,
-      code: 'KH-0001',
+      customerCode: 'KH-0001',
       name: 'Nguyễn Thị Hào',
       birthday: '1970-11-07',
       gender: 0,
@@ -38,7 +38,7 @@ export const contracts: Contract[] = [
     customer: {
       id: 3,
 
-      code: 'KH-0003',
+      customerCode: 'KH-0003',
 
       name: 'Trương Đình Nghệ',
 
@@ -75,7 +75,7 @@ export const contracts: Contract[] = [
     customer: {
       id: 4,
 
-      code: 'KH-0004',
+      customerCode: 'KH-0004',
 
       name: 'Dương Văn Quan',
 
@@ -112,7 +112,7 @@ export const contracts: Contract[] = [
     customer: {
       id: 5,
 
-      code: 'KH-0005',
+      customerCode: 'KH-0005',
 
       name: 'Hoàng Trần Nhi Nhi',
 
@@ -148,7 +148,7 @@ export const contracts: Contract[] = [
     customer: {
       id: 2,
 
-      code: 'KH-0002',
+      customerCode: 'KH-0002',
 
       name: 'Phạm Xuân Diệu',
 

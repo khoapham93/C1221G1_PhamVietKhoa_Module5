@@ -31,7 +31,7 @@ export class CustomerEditComponent implements OnInit {
   ngOnInit(): void {
     this.customerForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
-      code: new FormControl('', [Validators.required, Validators.pattern('^KH-\\d{4}$')]),
+      customer_code: new FormControl('', [Validators.required, Validators.pattern('^KH-\\d{4}$')]),
       birthday: new FormControl('', [Validators.required, Validators.pattern('^\\d{4}-\\d{2}-\\d{2}$')]),
       idCard: new FormControl('', [Validators.required, Validators.pattern('^(([1-9]\\d{8})|([1-9]\\d{11}))$')]),
       phone: new FormControl('', [Validators.required, Validators.pattern('^(091|090|\\(84\\)90|\\(84\\)91)\\d{7}$')]),
@@ -90,8 +90,8 @@ export class CustomerEditComponent implements OnInit {
     return this.customerForm.get('name');
   }
 
-  get code() {
-    return this.customerForm.get('code');
+  get customer_code() {
+    return this.customerForm.get('customer_code');
   }
 
   onSubmit() {

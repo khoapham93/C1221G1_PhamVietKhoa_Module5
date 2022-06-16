@@ -3,7 +3,7 @@ import {Customer} from '../customers/Customer';
 export const customers: Customer[] = [
   {
     id: 1,
-    code: 'KH-0001',
+    customerCode: 'KH-0001',
     name: 'Nguyễn Thị Hào',
     birthday: '1970-11-07',
     gender: 0,
@@ -18,7 +18,7 @@ export const customers: Customer[] = [
   },
   {
     id: 2,
-    code: 'KH-0002',
+    customerCode: 'KH-0002',
 
     name: 'Phạm Xuân Diệu',
 
@@ -42,7 +42,7 @@ export const customers: Customer[] = [
   {
     id: 3,
 
-    code: 'KH-0003',
+    customerCode: 'KH-0003',
 
     name: 'Trương Đình Nghệ',
 
@@ -66,7 +66,7 @@ export const customers: Customer[] = [
   {
     id: 4,
 
-    code: 'KH-0004',
+    customerCode: 'KH-0004',
 
     name: 'Dương Văn Quan',
 
@@ -90,7 +90,7 @@ export const customers: Customer[] = [
   {
     id: 5,
 
-    code: 'KH-0005',
+    customerCode: 'KH-0005',
 
     name: 'Hoàng Trần Nhi Nhi',
 
@@ -114,7 +114,7 @@ export const customers: Customer[] = [
   {
     id: 6,
 
-    code: 'KH-0006',
+    customerCode: 'KH-0006',
 
     name: 'Tôn Nữ Mộc Châu',
 
@@ -138,7 +138,7 @@ export const customers: Customer[] = [
   {
     id: 7,
 
-    code: 'KH-0007',
+    customerCode: 'KH-0007',
 
     name: 'Nguyễn Mỹ Kim',
 
@@ -162,7 +162,7 @@ export const customers: Customer[] = [
   {
     id: 8,
 
-    code: 'KH-0008',
+    customerCode: 'KH-0008',
 
     name: 'Nguyễn Thị Hào',
 
@@ -186,7 +186,7 @@ export const customers: Customer[] = [
   {
     id: 9,
 
-    code: 'KH-0009',
+    customerCode: 'KH-0009',
 
     name: 'Trần Đại Danh',
 
@@ -210,7 +210,7 @@ export const customers: Customer[] = [
   {
     id: 10,
 
-    code: 'KH-0010',
+    customerCode: 'KH-0010',
 
     name: 'Nguyễn Tâm Đắc',
 
