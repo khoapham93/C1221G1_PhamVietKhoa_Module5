@@ -5,6 +5,7 @@ import {FacilitiesListComponent} from './facilities-list/facilities-list.compone
 import {FacilitiesCreateComponent} from './facilities-create/facilities-create.component';
 import {FacilitiesEditComponent} from './facilities-edit/facilities-edit.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -12,12 +13,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FacilitiesListComponent,
     FacilitiesCreateComponent,
     FacilitiesEditComponent],
-  imports: [
-    CommonModule,
-    FacilityRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        FacilityRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgxPaginationModule
+    ]
 })
 export class FacilityModule {
 }

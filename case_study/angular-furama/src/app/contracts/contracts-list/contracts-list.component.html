@@ -57,8 +57,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let contract of contracts; index as i">
-          <td>{{i}}</td>
+        <tr *ngFor="let contract of contracts|paginate : { itemsPerPage: 5, currentPage: p }; index as i">
+          <td>{{i+1}}</td>
           <td>{{contract.facility.name}}</td>
           <td>{{contract.customer.name}}</td>
           <td>{{contract.startDate|date:'dd/MM/yyyy'}}</td>
@@ -73,24 +73,28 @@
       </table>
     </div>
   </div>
+  <!--        paging angular-->
+  <div class="blog-pagination d-flex justify-content-center py-3">
+    <pagination-controls (pageChange)="p = $event" class="page-item"></pagination-controls>
+  </div>
   <!--        paging-->
-  <nav class="blog-pagination d-flex justify-content-center py-3">
-    <ul class="pagination">
-      <li class="page-item px-1">
-        <a href="#" class="page-link">Previous</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link">
-          <span>1</span>
-          <span>/</span>
-          <span>5</span>
-        </a>
-      </li>
-      <li class="page-item px-1">
-        <a href="#" class="page-link">Next</a>
-      </li>
-    </ul>
-  </nav>
+  <!--  <nav class="blog-pagination d-flex justify-content-center py-3">-->
+  <!--    <ul class="pagination">-->
+  <!--      <li class="page-item px-1">-->
+  <!--        <a href="#" class="page-link">Previous</a>-->
+  <!--      </li>-->
+  <!--      <li class="page-item">-->
+  <!--        <a class="page-link">-->
+  <!--          <span>1</span>-->
+  <!--          <span>/</span>-->
+  <!--          <span>5</span>-->
+  <!--        </a>-->
+  <!--      </li>-->
+  <!--      <li class="page-item px-1">-->
+  <!--        <a href="#" class="page-link">Next</a>-->
+  <!--      </li>-->
+  <!--    </ul>-->
+  <!--  </nav>-->
   <!--        paging-->
 </section>
 <!-- ================ Explore section end ================= -->

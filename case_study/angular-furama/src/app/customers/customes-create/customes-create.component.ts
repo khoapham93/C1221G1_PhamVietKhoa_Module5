@@ -22,7 +22,10 @@ export class CustomesCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.customerTypes = this.customerTypeService.getAllCustomerType();
+    this.customerTypeService.getAllCustomerType().subscribe(customerTypes => {
+      this.customerTypes = customerTypes;
+    });
+
     this.customerForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       code: new FormControl('', [Validators.required, Validators.pattern('^KH-\\d{4}$')]),
@@ -34,6 +37,7 @@ export class CustomesCreateComponent implements OnInit {
       customerType: new FormControl('', [Validators.required]),
       gender: new FormControl(-1, [Validators.required])
     });
+
   }
 
   get email() {
@@ -81,10 +85,13 @@ export class CustomesCreateComponent implements OnInit {
     if (this.customerForm.valid) {
       this.customer = this.customerForm.value;
       console.log(this.customer);
-      this.customerService.save(this.customer);
-      alert('Create Successfully');
-      this.customerForm.reset();
-      this.submitted = false;
+      this.customerService.save(this.customer).subscribe(() => {
+        alert('Create Successfully');
+        this.customerForm.reset();
+        this.submitted = false;
+      }, () => {
+        alert('create fail');
+      });
     }
   }
 }

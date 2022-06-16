@@ -41,31 +41,54 @@ export class FacilitiesEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.facilityForm = new FormGroup({
+      name: new FormControl(),
+      code: new FormControl(),
+      rentType: new FormControl(),
+      rentalFee: new FormControl(),
+      floorSquare: new FormControl(),
+      maximumPeople: new FormControl(),
+      facilityType: new FormControl(),
+      roomStandard: new FormControl(),
+      description: new FormControl(),
+      poolSquare: new FormControl(),
+      numberFloor: new FormControl(),
+      freeServiceInclude: new FormControl(),
+    });
     const routeParams = this.activeRoute.snapshot.paramMap;
     this.id = Number(routeParams.get('id'));
-    this.facility = this.facilityService.findById(this.id);
-    if (this.facility === undefined) {
-      this.route.navigate(['/error']);
-    }
-    this.showFacilityType(this.facility.facilityType);
-    this.facilityTypes = this.facilityTypeService.getAllFacilityType();
-    this.rentTypes = this.rentTypeService.getAllRentType();
+    this.getFacility(this.id);
 
-    this.facilityForm = new FormGroup({
-      name: new FormControl(this.facility.name, [Validators.required, Validators.pattern('^\\D+$')]),
-      code: new FormControl(this.facility.code, [Validators.required, Validators.pattern('^DV-\\d{4}$')]),
-      rentType: new FormControl(this.facility.rentType, [Validators.required]),
-      rentalFee: new FormControl(this.facility.rentalFee, [Validators.required]),
-      floorSquare: new FormControl(this.facility.floorSquare,
-        [Validators.required, Validators.pattern(this.POSITIVE_DOUBLE_REGEX)]),
-      maximumPeople: new FormControl(this.facility.maximumPeople,
-        [Validators.required, Validators.pattern(this.INTEGER_GREATER_THAN_0_REGEX)]),
-      facilityType: new FormControl(this.facility.facilityType, [Validators.required]),
-      roomStandard: new FormControl(this.facility.roomStandard),
-      description: new FormControl(this.facility.description),
-      poolSquare: new FormControl(this.facility.poolSquare),
-      numberFloor: new FormControl(this.facility.numberFloor),
-      freeServiceInclude: new FormControl(this.facility.freeServiceInclude),
+    this.facilityTypeService.getAllFacilityType().subscribe(facilityTypes => {
+      this.facilityTypes = facilityTypes;
+    });
+    this.rentTypeService.getAllRentType().subscribe(rentTypes => {
+      this.rentTypes = rentTypes;
+    });
+    this.showFacilityType(this.facility.facilityType);
+  }
+
+  getFacility(id: number) {
+    return this.facilityService.findById(this.id).subscribe(facility => {
+      this.facility = facility;
+      this.facilityForm = new FormGroup({
+        name: new FormControl(this.facility.name, [Validators.required, Validators.pattern('^\\D+$')]),
+        code: new FormControl(this.facility.code, [Validators.required, Validators.pattern('^DV-\\d{4}$')]),
+        rentType: new FormControl(this.facility.rentType, [Validators.required]),
+        rentalFee: new FormControl(this.facility.rentalFee, [Validators.required]),
+        floorSquare: new FormControl(this.facility.floorSquare,
+          [Validators.required, Validators.pattern(this.POSITIVE_DOUBLE_REGEX)]),
+        maximumPeople: new FormControl(this.facility.maximumPeople,
+          [Validators.required, Validators.pattern(this.INTEGER_GREATER_THAN_0_REGEX)]),
+        facilityType: new FormControl(this.facility.facilityType, [Validators.required]),
+        roomStandard: new FormControl(this.facility.roomStandard),
+        description: new FormControl(this.facility.description),
+        poolSquare: new FormControl(this.facility.poolSquare),
+        numberFloor: new FormControl(this.facility.numberFloor),
+        freeServiceInclude: new FormControl(this.facility.freeServiceInclude),
+      });
+    }, () => {
+      this.route.navigate(['/error']);
     });
   }
 
@@ -152,8 +175,10 @@ export class FacilitiesEditComponent implements OnInit {
     if (this.facilityForm.valid) {
       this.facility = this.facilityForm.value;
       this.facility.id = this.id;
-      this.facilityService.save(this.facility);
-      this.route.navigate(['/service/list']);
+      this.facilityService.save(this.facility).subscribe(() =>{
+
+        this.route.navigate(['/service/list']);
+      });
     }
   }
 

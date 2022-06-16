@@ -22,7 +22,8 @@
     </div>
     <div class="card-all">
       <div class="row pb-4">
-        <div class="col-md-6 col-xl-4 mb-5" *ngFor="let facility of facilities">
+        <div class="col-md-6 col-xl-4 mb-5"
+             *ngFor="let facility of facilities|paginate : { itemsPerPage: 6, currentPage: p }">
           <div class="card card-explore">
             <div class="card-explore__img">
               <img alt="" class="card-img" [src]=facility.image>
@@ -30,7 +31,8 @@
             <div class="card-body">
               <h3 class="card-explore__price">{{facility.rentalFee|currency: "VND"}} <sub>/Night</sub></h3>
               <div class="d-flex justify-content-between align-items-center">
-                <h4 class="card-explore__title"><a href="#">{{facility.name}}&nbsp;</a><span class="badge badge-warning">{{facility.facilityType.facilityType}}</span></h4>
+                <h4 class="card-explore__title"><a href="#">{{facility.name}}&nbsp;</a><span
+                  class="badge badge-warning">{{facility.facilityType.facilityType}}</span></h4>
                 <div class="dropout d-flex align-items-center">
                   <button class="more">
                     <span></span>
@@ -65,24 +67,28 @@
     </div>
 
   </div>
+  <!--        paging angular-->
+  <div class="blog-pagination d-flex justify-content-center py-3">
+    <pagination-controls (pageChange)="p = $event" class="page-item"></pagination-controls>
+  </div>
   <!--        paging-->
-  <nav class="blog-pagination d-flex justify-content-center py-3">
-    <ul class="pagination">
-      <li class="page-item px-1">
-        <a href="#" class="page-link">Previous</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link">
-          <span>1</span>
-          <span>/</span>
-          <span>5</span>
-        </a>
-      </li>
-      <li class="page-item px-1">
-        <a href="#" class="page-link">Next</a>
-      </li>
-    </ul>
-  </nav>
+  <!--  <nav class="blog-pagination d-flex justify-content-center py-3">-->
+  <!--    <ul class="pagination">-->
+  <!--      <li class="page-item px-1">-->
+  <!--        <a href="#" class="page-link">Previous</a>-->
+  <!--      </li>-->
+  <!--      <li class="page-item">-->
+  <!--        <a class="page-link">-->
+  <!--          <span>1</span>-->
+  <!--          <span>/</span>-->
+  <!--          <span>5</span>-->
+  <!--        </a>-->
+  <!--      </li>-->
+  <!--      <li class="page-item px-1">-->
+  <!--        <a href="#" class="page-link">Next</a>-->
+  <!--      </li>-->
+  <!--    </ul>-->
+  <!--  </nav>-->
   <!--        paging-->
 </section>
 <!-- ================ Explore section end ================= -->

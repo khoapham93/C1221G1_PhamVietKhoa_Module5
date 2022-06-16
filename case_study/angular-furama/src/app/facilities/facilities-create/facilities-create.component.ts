@@ -27,7 +27,6 @@ export class FacilitiesCreateComponent implements OnInit {
   idSelected;
 
 
-
   constructor(private facilityService: FacilityService,
               private facilityTypeService: FacilityTypeService,
               private rentTypeService: RentTypeService) {
@@ -36,8 +35,12 @@ export class FacilitiesCreateComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.facilityTypes = this.facilityTypeService.getAllFacilityType();
-    this.rentTypes = this.rentTypeService.getAllRentType();
+    this.facilityTypeService.getAllFacilityType().subscribe(facilityTypes => {
+      this.facilityTypes = facilityTypes;
+    });
+    this.rentTypeService.getAllRentType().subscribe(rentTypes => {
+      this.rentTypes = rentTypes;
+    });
     this.facilityForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.pattern('^\\D+$')]),
       code: new FormControl('', [Validators.required, Validators.pattern('^DV-\\d{4}$')]),
@@ -138,10 +141,12 @@ export class FacilitiesCreateComponent implements OnInit {
     this.submitted = true;
     if (this.facilityForm.valid) {
       this.facility = this.facilityForm.value;
-      this.facilityService.save(this.facility);
-      alert('Create Successfully');
-      this.facilityForm.reset();
-      this.submitted = false;
+      this.facilityService.save(this.facility).subscribe(() => {
+
+        alert('Create Successfully');
+        this.facilityForm.reset();
+        this.submitted = false;
+      });
     }
   }
 }
