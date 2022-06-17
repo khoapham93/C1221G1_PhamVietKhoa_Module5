@@ -25,16 +25,16 @@
       <div class="row">
         <div class="col">
           <input class="form-control mr-sm-2" type="search" placeholder="name" aria-label="Search"
-                 name="name">
+                 name="name" #name>
         </div>
         <div class="col">
           <input class="form-control mr-sm-2" type="search" placeholder="Phone" aria-label="Search"
-                 name="phone">
+                 name="phone" #phone>
         </div>
         <div class="col">
           <select name="customerType"
-                  class="form-control">
-            <option value="-1">Select customerType</option>
+                  class="form-control" #customerType>
+            <option value="">Select customerType</option>
             <option value="1"> Kim cương</option>
             <option value="2"> Bạch kim</option>
             <option value="3"> Vàng</option>
@@ -43,7 +43,7 @@
           </select>
         </div>
         <div class="col">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="button" (click)="searchCustomer(name,phone,customerType)">Search</button>
         </div>
       </div>
     </div>
@@ -51,19 +51,20 @@
       <table class="table table-hover">
         <thead class="thead-dark">
         <tr>
-          <th scope="col" >#</th>
-          <th scope="col" >Code</th>
-          <th scope="col" >Name</th>
-          <th scope="col" >Gender</th>
-          <th scope="col" >Phone</th>
-          <th scope="col" >Email</th>
-          <th scope="col" >Class</th>
-          <th scope="col" >Address</th>
-          <th scope="col" ></th>
+          <th scope="col">#</th>
+          <th scope="col">Code</th>
+          <th scope="col">Name</th>
+          <th scope="col">Gender</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Email</th>
+          <th scope="col">Class</th>
+          <th scope="col">Address</th>
+          <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let customer of customers; index as i">
+        <tr *ngFor="let customer of customers|paginate : { itemsPerPage: 5, currentPage: p }; index as i">
+<!--        <tr *ngFor="let customer of customers; index as i">-->
           <td>{{i + 1}}</td>
           <td>{{customer.customerCode}}</td>
           <td>{{customer.name}}</td>
@@ -112,25 +113,28 @@
       </table>
     </div>
   </div>
-
+<!--  &lt;!&ndash;        paging angular&ndash;&gt;-->
+  <div class="blog-pagination d-flex justify-content-center py-3">
+    <pagination-controls (pageChange)="p = $event" class="page-item"></pagination-controls>
+  </div>
   <!--          paging-->
-  <nav class="blog-pagination d-flex justify-content-center py-3">
-    <ul class="pagination">
-      <li class="page-item px-1">
-        <a (click)="previousPage()" [class.disabled]="currentPage<=0" class="page-link">Previous</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link">
-          <span>{{currentPage +1}}</span>
-          <span>/</span>
-          <span>{{totalPages}}</span>
-        </a>
-      </li>
-      <li class="page-item px-1">
-        <a class="page-link" (click)="nextPage()" [class.disabled]="currentPage+1>=totalPages">Next</a>
-      </li>
-    </ul>
-  </nav>
+<!--    <nav class="blog-pagination d-flex justify-content-center py-3">-->
+<!--      <ul class="pagination">-->
+<!--        <li class="page-item px-1">-->
+<!--          <a (click)="previousPage()" [class.disabled]="currentPage<=0" class="page-link">Previous</a>-->
+<!--        </li>-->
+<!--        <li class="page-item">-->
+<!--          <a class="page-link">-->
+<!--            <span>{{currentPage +1}}</span>-->
+<!--            <span>/</span>-->
+<!--            <span>{{totalPages}}</span>-->
+<!--          </a>-->
+<!--        </li>-->
+<!--        <li class="page-item px-1">-->
+<!--          <a class="page-link" (click)="nextPage()" [class.disabled]="currentPage+1>=totalPages">Next</a>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </nav>-->
   <!--          paging-->
 </section>
 <!-- ================ Explore section end ================= -->

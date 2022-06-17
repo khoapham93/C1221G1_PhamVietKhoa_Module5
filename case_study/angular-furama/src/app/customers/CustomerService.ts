@@ -1,12 +1,16 @@
 import {Injectable} from '@angular/core';
 import {Customer} from './Customer';
 import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpEvent, HttpHeaders} from '@angular/common/http';
 import {Page} from 'ngx-pagination/dist/pagination-controls.directive';
 
 const API_URL = 'http://localhost:3000';
 const API_URL_WEBSERVICE = 'http://localhost:8080';
-
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -252,26 +256,34 @@ export class CustomerService {
     return this.http.get<Customer[]>(`${API_URL}/customers`);
     // return this.http.get<Customer[]>(`${API_URL_WEBSERVICE}/customerRes`);
   }
+
   public getAllCustomer(request): Observable<any> {
     const params = request;
     return this.http.get<Page>(`${API_URL_WEBSERVICE}/customerRes`, {params});
   }
 
   public findById(id: number): Observable<Customer> {
+    // return this.http.get<Customer>(`${API_URL_WEBSERVICE}/customerRes/${id}`);
     return this.http.get<Customer>(`${API_URL}/customers/${id}`);
   }
 
   public save(customer: Customer): Observable<Customer> {
     console.log(customer);
     if (customer.id === undefined) {
+      // return this.http.post<Customer>(`${API_URL_WEBSERVICE}/customerRes`, customer);
       return this.http.post<Customer>(`${API_URL}/customers`, customer);
     } else {
+      // return this.http.patch<Customer>(`${API_URL_WEBSERVICE}/customerRes/${customer.id}`, JSON.stringify(customer), httpOptions);
       return this.http.patch<Customer>(`${API_URL}/customers/${customer.id}`, customer);
     }
   }
 
   public delete(customer: Customer): Observable<Customer> {
-    // return this.http.delete<Customer>(`${API_URL}/customers/${customer.id}`);
-    return this.http.delete<Customer>(`${API_URL_WEBSERVICE}/customerRes/${customer.id}`);
+    return this.http.delete<Customer>(`${API_URL}/customers/${customer.id}`);
+    // return this.http.delete<Customer>(`${API_URL_WEBSERVICE}/customerRes/${customer.id}`);
+  }
+
+  public search(name: string, phone: string, type: string): Observable<Customer[]> {
+    return this.http.get<Customer[]>(`${API_URL}/customers?name_like=${name}&phone_like=${phone}&customerType.id_like=${type}`);
   }
 }

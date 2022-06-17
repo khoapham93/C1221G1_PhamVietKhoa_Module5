@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Contract} from '../Contract';
 import {Customer} from '../../customers/Customer';
 import {Facility} from '../../facilities/Facility';
 import {CustomerService} from '../../customers/CustomerService';
 import {FacilityService} from '../../facilities/FacilityService';
 import {ContractService} from '../ContractService';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-contracts-create',
@@ -13,6 +13,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./contracts-create.component.css']
 })
 export class ContractsCreateComponent implements OnInit {
+  selectedValue: Facility;
+  total = 0;
   submitted = false;
   contract = {} as Contract;
   customers: Customer[] = [];
@@ -39,6 +41,7 @@ export class ContractsCreateComponent implements OnInit {
       startDate: new FormControl('', [Validators.required, Validators.pattern('^\\d{4}-\\d{2}-\\d{2}$')]),
       endDate: new FormControl('', [Validators.required, Validators.pattern('^\\d{4}-\\d{2}-\\d{2}$')]),
       deposit: new FormControl('', [Validators.required, Validators.pattern(this.POSITIVE_DOUBLE_REGEX)]),
+
       serviceInclude: new FormControl(''),
     });
   }
@@ -62,9 +65,11 @@ export class ContractsCreateComponent implements OnInit {
   get deposit() {
     return this.contractForm.get('deposit');
   }
+
   get serviceInclude() {
     return this.contractForm.get('serviceInclude');
   }
+
   onSubmit() {
     this.submitted = true;
     if (this.contractForm.valid) {
@@ -75,5 +80,10 @@ export class ContractsCreateComponent implements OnInit {
         this.submitted = false;
       });
     }
+  }
+
+  getFacilitySelected(selectedValue) {
+    this.selectedValue = selectedValue;
+    this.total = this.selectedValue.rentalFee;
   }
 }

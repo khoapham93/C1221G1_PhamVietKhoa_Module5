@@ -77,6 +77,12 @@
             </div>
           </div>
           <div class="form-group row">
+            <label for="total" class="col-sm-3 col-form-label">total</label>
+            <div class="col-sm-9">
+              <div class="form-control" id="total" formControlName="total" >{{total|currency:'VND'}}</div>
+            </div>
+          </div>
+          <div class="form-group row">
             <label for="customer" class="col-sm-3 col-form-label">Customer booking</label>
             <div class="col-sm-9">
               <select class="form-control"
@@ -102,6 +108,7 @@
                       id="facility"
                       name="facility"
                       formControlName="facility"
+                      (ngModelChange)="getFacilitySelected($event)"
                       [class.is-invalid]='(facility.touched || facility.dirty||submitted) && facility.invalid'
                       [class.is-valid]='facility.valid'>
                 <option value="">Select Service</option>

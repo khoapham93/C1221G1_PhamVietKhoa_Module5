@@ -134,6 +134,21 @@
         "id": 1,
         "type": "Kim cương"
       }
+    },
+    {
+      "name": "Phạm Việt Khoa",
+      "customerCode": "KH-9865",
+      "birthday": "2012-01-01",
+      "idCard": "215322646",
+      "phone": "0901536568",
+      "email": "khoapham@gmail.com",
+      "address": "Da Nang",
+      "customerType": {
+        "id": 1,
+        "type": "Kim Cương"
+      },
+      "gender": "1",
+      "id": 11
     }
   ],
   "customerTypes": [
@@ -312,6 +327,28 @@
       "freeServiceInclude": "",
       "image": "../../../assets/img/home/explore6.png",
       "id": 7
+    },
+    {
+      "name": "An Villa",
+      "code": "DV-9922",
+      "rentType": {
+        "id": 4,
+        "rentType": "Giờ"
+      },
+      "rentalFee": "100000",
+      "floorSquare": "100",
+      "maximumPeople": "1",
+      "facilityType": {
+        "id": 1,
+        "facilityType": "villa"
+      },
+      "roomStandard": "Bình thường",
+      "description": "Phòng điều hòa",
+      "poolSquare": "20",
+      "numberFloor": "2",
+      "freeServiceInclude": "",
+      "image": "../../../assets/img/home/explore2.png",
+      "id": 8
     }
   ],
   "facilityTypes": [

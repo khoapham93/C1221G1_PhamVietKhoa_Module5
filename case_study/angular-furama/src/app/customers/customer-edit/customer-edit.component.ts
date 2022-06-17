@@ -31,7 +31,7 @@ export class CustomerEditComponent implements OnInit {
   ngOnInit(): void {
     this.customerForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
-      customer_code: new FormControl('', [Validators.required, Validators.pattern('^KH-\\d{4}$')]),
+      customerCode: new FormControl('', [Validators.required, Validators.pattern('^KH-\\d{4}$')]),
       birthday: new FormControl('', [Validators.required, Validators.pattern('^\\d{4}-\\d{2}-\\d{2}$')]),
       idCard: new FormControl('', [Validators.required, Validators.pattern('^(([1-9]\\d{8})|([1-9]\\d{11}))$')]),
       phone: new FormControl('', [Validators.required, Validators.pattern('^(091|090|\\(84\\)90|\\(84\\)91)\\d{7}$')]),
@@ -52,6 +52,7 @@ export class CustomerEditComponent implements OnInit {
   getCustomer(id: number) {
     return this.customerService.findById(this.id).subscribe(customer => {
       this.customer = customer;
+      console.log(customer);
       this.customerForm.patchValue(this.customer);
     }, () => {
       this.route.navigate(['/error']);
@@ -90,8 +91,8 @@ export class CustomerEditComponent implements OnInit {
     return this.customerForm.get('name');
   }
 
-  get customer_code() {
-    return this.customerForm.get('customer_code');
+  get customerCode() {
+    return this.customerForm.get('customerCode');
   }
 
   onSubmit() {
@@ -102,8 +103,9 @@ export class CustomerEditComponent implements OnInit {
       console.log(this.customer);
       this.customerService.save(this.customer).subscribe(() => {
         this.route.navigate(['/customer/list']);
-      }, () => {
+      }, er => {
         alert('Update fail');
+        console.log(er);
       });
     }
   }
