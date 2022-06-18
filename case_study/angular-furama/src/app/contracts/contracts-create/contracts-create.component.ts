@@ -6,6 +6,7 @@ import {CustomerService} from '../../customers/CustomerService';
 import {FacilityService} from '../../facilities/FacilityService';
 import {ContractService} from '../ContractService';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import {CustomValidate} from '../../custom-validate';
 
 @Component({
   selector: 'app-contracts-create',
@@ -24,7 +25,8 @@ export class ContractsCreateComponent implements OnInit {
 
   constructor(private customerService: CustomerService,
               private facilityService: FacilityService,
-              private contractService: ContractService) {
+              private contractService: ContractService,
+              private customValidate: CustomValidate) {
   }
 
   ngOnInit(): void {
@@ -36,14 +38,14 @@ export class ContractsCreateComponent implements OnInit {
     });
 
     this.contractForm = new FormGroup({
-      customer: new FormControl('', [Validators.required]),
-      facility: new FormControl('', [Validators.required]),
-      startDate: new FormControl('', [Validators.required, Validators.pattern('^\\d{4}-\\d{2}-\\d{2}$')]),
-      endDate: new FormControl('', [Validators.required, Validators.pattern('^\\d{4}-\\d{2}-\\d{2}$')]),
-      deposit: new FormControl('', [Validators.required, Validators.pattern(this.POSITIVE_DOUBLE_REGEX)]),
-
-      serviceInclude: new FormControl(''),
-    });
+        customer: new FormControl('', [Validators.required]),
+        facility: new FormControl('', [Validators.required]),
+        startDate: new FormControl('', [Validators.required, this.customValidate.dateValidate()]),
+        endDate: new FormControl('', [Validators.required, this.customValidate.dateValidate()]),
+        deposit: new FormControl('', [Validators.required, Validators.pattern(this.POSITIVE_DOUBLE_REGEX)]),
+        serviceInclude: new FormControl(''),
+      }, this.customValidate.compareDate('startDate', 'endDate')
+    );
   }
 
   get customer() {

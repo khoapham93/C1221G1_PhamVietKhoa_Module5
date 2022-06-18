@@ -3,6 +3,7 @@ import {Customer} from './Customer';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpEvent, HttpHeaders} from '@angular/common/http';
 import {Page} from 'ngx-pagination/dist/pagination-controls.directive';
+import {map} from 'rxjs/operators';
 
 const API_URL = 'http://localhost:3000';
 const API_URL_WEBSERVICE = 'http://localhost:8080';
@@ -285,5 +286,14 @@ export class CustomerService {
 
   public search(name: string, phone: string, type: string): Observable<Customer[]> {
     return this.http.get<Customer[]>(`${API_URL}/customers?name_like=${name}&phone_like=${phone}&customerType.id_like=${type}`);
+  }
+
+  public checkCustomerCode(code: string): Observable<boolean> {
+    return this.http.get(`${API_URL}/customers`).pipe(
+      map((customers: Array<Customer>) =>
+        customers.filter(customer => customer.customerCode === code)
+      ),
+      map(customers => !customers.length)
+    );
   }
 }

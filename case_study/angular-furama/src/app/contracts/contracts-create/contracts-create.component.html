@@ -35,7 +35,7 @@
                      [class.is-invalid]='(startDate.touched || startDate.dirty||submitted) && startDate.invalid'
                      [class.is-valid]='startDate.valid'>
               <div *ngIf='!startDate.valid && (startDate.dirty ||startDate.touched||submitted)'>
-                <small [hidden]='!startDate.errors.pattern' class="text-danger">
+                <small [hidden]='!startDate.errors.dateValidator' class="text-danger">
                   Start date is Wrong format
                 </small>
                 <small [hidden]='!startDate.errors.required' class="text-danger">
@@ -51,11 +51,14 @@
                      [class.is-invalid]='(endDate.touched || endDate.dirty||submitted) && endDate.invalid'
                      [class.is-valid]='endDate.valid'>
               <div *ngIf='!endDate.valid && (endDate.dirty ||endDate.touched||submitted)'>
-                <small [hidden]='!endDate.errors.pattern' class="text-danger">
+                <small [hidden]='!endDate.errors.dateValidator' class="text-danger">
                   End date is Wrong format
                 </small>
                 <small [hidden]='!endDate.errors.required' class="text-danger">
                   End date is required
+                </small>
+                <small [hidden]='!endDate.errors.mustLater' class="text-danger">
+                  End date must be from start day or later
                 </small>
               </div>
             </div>

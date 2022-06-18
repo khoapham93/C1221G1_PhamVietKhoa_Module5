@@ -4,6 +4,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CustomerType} from '../CustomerType';
 import {CustomerService} from '../CustomerService';
 import {CustomerTypeService} from '../CustomerTypeService';
+import {CustomValidate} from '../../custom-validate';
+
 
 @Component({
   selector: 'app-customes-create',
@@ -16,9 +18,9 @@ export class CustomesCreateComponent implements OnInit {
   customerTypes: CustomerType[] = [];
   customerForm: FormGroup;
 
-
   constructor(private customerService: CustomerService,
-              private customerTypeService: CustomerTypeService) {
+              private customerTypeService: CustomerTypeService,
+              private customValidate: CustomValidate) {
   }
 
   ngOnInit(): void {
@@ -28,7 +30,8 @@ export class CustomesCreateComponent implements OnInit {
 
     this.customerForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
-      customerCode: new FormControl('', [Validators.required, Validators.pattern('^KH-\\d{4}$')]),
+      customerCode: new FormControl('', [Validators.required, Validators.pattern('^KH-\\d{4}$')],
+        [this.customValidate.customerCodeValidator()]),
       birthday: new FormControl('', [Validators.required, Validators.pattern('^\\d{4}-\\d{2}-\\d{2}$')]),
       idCard: new FormControl('', [Validators.required, Validators.pattern('^(([1-9]\\d{8})|([1-9]\\d{11}))$')]),
       phone: new FormControl('', [Validators.required, Validators.pattern('^(091|090|\\(84\\)90|\\(84\\)91)\\d{7}$')]),

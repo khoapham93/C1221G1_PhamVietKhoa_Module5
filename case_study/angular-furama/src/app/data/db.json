@@ -646,6 +646,24 @@
       "deposit": "500000",
       "serviceInclude": "Karaoke",
       "id": 6
+    },
+    {
+      "customer": "",
+      "facility": "",
+      "startDate": "275760-05-06",
+      "endDate": "",
+      "deposit": "",
+      "serviceInclude": "",
+      "id": 7
+    },
+    {
+      "customer": "",
+      "facility": "",
+      "startDate": "275760-04-05",
+      "endDate": "",
+      "deposit": "",
+      "serviceInclude": "",
+      "id": 8
     }
   ]
 }

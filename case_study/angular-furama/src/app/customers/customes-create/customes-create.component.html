@@ -47,10 +47,13 @@
                      [class.is-valid]="customerCode.valid">
               <div *ngIf="!customerCode.valid && (customerCode.dirty ||customerCode.touched||submitted)">
                 <small class="text-danger" [hidden]="!customerCode.errors.pattern">
-                  customerCode is wrong format (KH-XXXX)
+                  customer Code is wrong format (KH-XXXX)
                 </small>
                 <small class="text-danger" [hidden]="!customerCode.errors.required">
-                  customerCode is required
+                  customer Code is required
+                </small>
+                <small class="text-danger" [hidden]="!customerCode.errors.customerCodeExisted">
+                  customer Code is already exist!
                 </small>
               </div>
             </div>
