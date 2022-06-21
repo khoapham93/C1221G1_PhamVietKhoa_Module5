@@ -1,0 +1,72 @@
+{
+  "locations": [
+    {
+      "id": 1,
+      "name": "Đà Nẵng"
+    },
+    {
+      "id": 2,
+      "name": "Quảng Nam"
+    },
+    {
+      "id": 3,
+      "name": "Quảng Ngãi"
+    },
+    {
+      "id": 4,
+      "name": "Huế"
+    },
+    {
+      "id": 5,
+      "name": "Bình Định"
+    },
+    {
+      "id": 6,
+      "name": "Khánh Hòa"
+    },
+    {
+      "id": 7,
+      "name": "TP. Hồ Chí Minh"
+    },
+    {
+      "id": 8,
+      "name": "Hà Nội"
+    }
+  ],
+  "buses": [
+    {
+      "id": 213,
+      "busType": "Giường nằm",
+      "owner": "Mai Linh",
+      "startLocation": {
+        "id": 1,
+        "name": "Đà Nẵng"
+      },
+      "arriveLocation": {
+        "id": 2,
+        "name": "Quảng Nam"
+      },
+      "phone": "0905111265",
+      "email": "mailinh@gmail.com",
+      "timeStart": "08:00",
+      "timeArrive": "09:00"
+    },
+    {
+      "id": 111,
+      "busType": "Giường nằm",
+      "owner": "Hoàng Long",
+      "startLocation": {
+        "id": 1,
+        "name": "Đà Nẵng"
+      },
+      "arriveLocation": {
+        "id": 6,
+        "name": "Khánh Hòa"
+      },
+      "phone": "0905564785",
+      "email": "hoanglong@gmail.com",
+      "timeStart": "07:00",
+      "timeArrive": "13:00"
+    }
+  ]
+}

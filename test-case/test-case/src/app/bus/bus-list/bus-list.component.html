@@ -1,0 +1,131 @@
+
+<!-- ================ start banner area ================= -->
+<section class="contact-banner-area" id="contact">
+  <div class="container h-100">
+    <div class="contact-banner">
+      <div class="text-center">
+        <h1>Bus Manager</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ================ end banner area ================= -->
+
+<!-- ================ Explore section start ================= -->
+<section class="section-margin section-margin--small">
+  <div class="container">
+    <div class="section-intro text-center">
+      <div class="section-intro__style">
+        <img alt="" src="../../../assets/img/home/contract.png">
+      </div>
+      <h2>Buses at XYZ Bus Station</h2>
+    </div>
+    <div class="d-flex justify-content-between my-lg-4">
+      <div >
+        <a [routerLink]="['/bus-create']" class="btn btn-primary my-2 my-sm-0" type="submit">Add New Bus</a>
+      </div>
+      <div class="form-inline ">
+        <div class="row">
+          <div class="col">
+            <input class="form-control mr-sm-2" type="text" placeholder="Owner" aria-label="Search"
+                   name="owner">
+          </div>
+
+          <div class="col">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">Bus No.</th>
+          <th scope="col">Type</th>
+          <th scope="col">Owner</th>
+          <th scope="col">Start</th>
+          <th scope="col">Arrive</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Email</th>
+          <th scope="col">Time Leave</th>
+          <th scope="col">Time arrive</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let bus of buses|paginate : { itemsPerPage: 5, currentPage: p }">
+          <!--        <tr *ngFor="let customer of customers; index as i">-->
+          <td>{{bus.id}}</td>
+          <td>{{bus.busType}}</td>
+          <td>{{bus.owner}}</td>
+          <td>{{bus.startLocation.name}}</td>
+          <td>{{bus.arriveLocation.name}}</td>
+          <td>{{bus.phone}}</td>
+          <td>{{bus.email}}</td>
+          <td>{{bus.timeStart}}</td>
+          <td>{{bus.timeArrive}}</td>
+          <td>
+            <div class="dropout d-flex align-items-center">
+              <button class="more">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+              <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                  <a class="btn btn-warning w-100" [routerLink]="['/bus-update',bus.id]">
+                    <i class='ti-settings'></i>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <button class="btn btn-danger w-100" data-target="#deleteModal"
+                          data-toggle="modal"
+                          (click)="getBus(bus)">
+                    <i class='bx bx-trash'></i>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="blog-pagination d-flex justify-content-center py-3">
+    <pagination-controls (pageChange)="p = $event" class="page-item"></pagination-controls>
+  </div>
+
+</section>
+<!-- ================ Explore section end ================= -->
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Bus</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Do you really want to delete Bus
+          <span class="text-danger font-weight-bold" id="nameDelete">{{busDelete.id}}</span>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <div class="mx-auto row">
+          <input type="hidden" name="id" id="idDelete">
+          <button class="mx-2 button button-modal button--cancel cancel-banner-btn" data-dismiss="modal">Cancel</button>
+          <button class="mx-2 button button-modal button--active home-banner-btn"
+                  (click)="deleteBus(busDelete)"
+                  data-dismiss="modal">Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

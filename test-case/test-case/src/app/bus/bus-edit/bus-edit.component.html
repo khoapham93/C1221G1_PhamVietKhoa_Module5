@@ -1,0 +1,181 @@
+<!-- ================ start banner area ================= -->
+<section class="contact-banner-area" id="contact">
+  <div class="container h-100">
+    <div class="contact-banner">
+      <div class="text-center">
+        <h1>Bus Manager</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ================ end banner area ================= -->
+
+
+<!-- ================ Explore section start ================= -->
+<section class="section-margin section-margin--small">
+  <div class="container">
+    <div class="section-intro text-center pb-80px">
+      <div class="section-intro__style">
+        <img alt="" src="../../../assets/img/home/contract.png">
+      </div>
+      <h2>Update Bus Information</h2>
+    </div>
+    <div class="col-8 mx-auto">
+      <div class="mx-auto shadow-lg p-3 mb-5 bg-white rounded-lg">
+        <form [formGroup]="busForm" (ngSubmit)="onSubmit()" novalidate>
+          <div class="form-group row">
+            <label for="busType" class="col-sm-3 col-form-label">Bus Type</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="busType" formControlName='busType'
+                     [class.is-invalid]='(busType.touched || busType.dirty||submitted) && busType.invalid'
+                     [class.is-valid]='busType.valid'>
+              <div *ngIf='!busType.valid && (busType.dirty ||busType.touched||submitted)'>
+                <small [hidden]='!busType.errors.pattern' class="text-danger">
+                  busType is Wrong format
+                </small>
+                <small [hidden]='!busType.errors.required' class="text-danger">
+                  Bus Type is required
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="owner" class="col-sm-3 col-form-label">Owner</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="owner" formControlName="owner"
+                     [class.is-invalid]="(owner.touched || owner.dirty||submitted) && owner.invalid"
+                     [class.is-valid]="owner.valid">
+              <div *ngIf="!owner.valid && (owner.dirty ||owner.touched||submitted)">
+
+                <small class="text-danger" [hidden]="!owner.errors.required">
+                  Owner is required
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="startLocation" class="col-sm-3 col-form-label">Start Location</label>
+            <div class="col-sm-9">
+              <select id="startLocation"
+                      class="form-control"
+                      formControlName="startLocation"
+                      [compareWith]="compareById"
+                      [class.is-invalid]="(startLocation.touched||submitted || startLocation.dirty) && startLocation.invalid"
+                      [class.is-valid]="startLocation.valid">
+                <option *ngFor="let location of locations"
+                        [ngValue]="location">{{location.name}}</option>
+              </select>
+              <div *ngIf="!startLocation.valid && (startLocation.dirty ||startLocation.touched||submitted)">
+                <small class="text-danger" [hidden]="!startLocation.errors.required">
+                  Start Location is required
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="arriveLocation" class="col-sm-3 col-form-label">Arrive Location</label>
+            <div class="col-sm-9">
+              <select id="arriveLocation"
+                      class="form-control"
+                      formControlName="arriveLocation"
+                      [compareWith]="compareById"
+                      [class.is-invalid]="(arriveLocation.touched||submitted || arriveLocation.dirty) && arriveLocation.invalid"
+                      [class.is-valid]="arriveLocation.valid">
+                <option *ngFor="let location of locations"
+                        [ngValue]="location">{{location.name}}</option>
+              </select>
+              <div *ngIf="!arriveLocation.valid && (arriveLocation.dirty ||arriveLocation.touched||submitted)">
+                <small class="text-danger" [hidden]="!arriveLocation.errors.required">
+                  Arrive Location is required
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="phone" class="col-sm-3 col-form-label">Phone</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="phone" formControlName="phone"
+                     [class.is-invalid]="(phone.touched||submitted || phone.dirty) && phone.invalid"
+                     [class.is-valid]="phone.valid">
+
+              <div *ngIf="!phone.valid && (phone.dirty ||phone.touched||submitted)">
+                <small class="text-danger" [hidden]="!phone.errors.pattern">
+                  Phone is wrong format (begin with 091-093-097 and contains 10 numbers)
+                </small>
+                <small class="text-danger" [hidden]="!phone.errors.required">
+                  Phone is required
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="email" class="col-sm-3 col-form-label">Email</label>
+            <div class="col-sm-9">
+              <input type="email" class="form-control" id="email" formControlName="email"
+                     [class.is-invalid]="(email.touched || submitted || email.dirty) && email.invalid"
+                     [class.is-valid]="email.valid">
+
+              <div *ngIf="!email.valid && (email.dirty || email.touched||submitted)">
+                <small class="text-danger" [hidden]="!email.errors.pattern">
+                  Email is wrong format
+                </small>
+                <small class="text-danger" [hidden]="!email.errors.required">
+                  Email is required
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="timeStart" class="col-sm-3 col-form-label">Time Start</label>
+            <div class="col-sm-9">
+              <input type="time" class="form-control" id="timeStart" formControlName="timeStart"
+                     [class.is-invalid]="(timeStart.touched||submitted || timeStart.dirty) && timeStart.invalid"
+                     [class.is-valid]="timeStart.valid">
+
+              <div *ngIf="!timeStart.valid && (timeStart.dirty ||timeStart.touched||submitted)">
+                <small class="text-danger" [hidden]="!timeStart.errors.dateValidator">
+                  Time Start is wrong format (hh:mm)
+                </small>
+                <small class="text-danger" [hidden]="!timeStart.errors.required">
+                  Time Start is required
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="timeArrive" class="col-sm-3 col-form-label">Time Arrive</label>
+            <div class="col-sm-9">
+              <input type="time" class="form-control" id="timeArrive" formControlName="timeArrive"
+                     [class.is-invalid]="(timeArrive.touched||submitted || timeArrive.dirty) && timeArrive.invalid"
+                     [class.is-valid]="timeArrive.valid">
+
+              <div *ngIf="!timeArrive.valid && (timeArrive.dirty ||timeArrive.touched||submitted)">
+                <small class="text-danger" [hidden]="!timeStart.errors.dateValidator">
+                  Time Arrive is wrong format (hh:mm)
+                </small>
+                <small class="text-danger" [hidden]="!timeArrive.errors.required">
+                  Time Arrive is required
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-center">
+            <div class="mx-2">
+              <a [routerLink]="['/bus-list']" class="button button--cancel cancel-banner-btn">Cancel</a>
+            </div>
+            <div class="mx-2">
+              <button class="button button--active home-banner-btn" type="submit">
+                Update
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+<!-- ================ Explore section end ================= -->
+
