@@ -1,4 +1,3 @@
-
 <!-- ================ start banner area ================= -->
 <section class="contact-banner-area" id="contact">
   <div class="container h-100">
@@ -21,18 +20,18 @@
       <h2>Buses at XYZ Bus Station</h2>
     </div>
     <div class="d-flex justify-content-between my-lg-4">
-      <div >
+      <div>
         <a [routerLink]="['/bus-create']" class="btn btn-primary my-2 my-sm-0" type="submit">Add New Bus</a>
       </div>
       <div class="form-inline ">
         <div class="row">
           <div class="col">
             <input class="form-control mr-sm-2" type="text" placeholder="Owner" aria-label="Search"
-                   name="owner">
+                   name="owner" #ownerSearch>
           </div>
 
           <div class="col">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="button" (click)="searchBuses(ownerSearch)">Search</button>
           </div>
         </div>
       </div>
@@ -54,8 +53,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let bus of buses|paginate : { itemsPerPage: 5, currentPage: p }">
-          <!--        <tr *ngFor="let customer of customers; index as i">-->
+        <tr *ngFor="let bus of buses">
           <td>{{bus.id}}</td>
           <td>{{bus.busType}}</td>
           <td>{{bus.owner}}</td>
@@ -93,9 +91,25 @@
       </table>
     </div>
   </div>
-  <div class="blog-pagination d-flex justify-content-center py-3">
-    <pagination-controls (pageChange)="p = $event" class="page-item"></pagination-controls>
-  </div>
+  <!--          paging-->
+  <nav class="blog-pagination d-flex justify-content-center py-3">
+    <ul class="pagination">
+      <li class="page-item px-1">
+        <a (click)="previousPage()" [class.disabled]="currentPage<=0" class="page-link">Previous</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link">
+          <span>{{currentPage + 1}}</span>
+          <span>/</span>
+          <span>{{totalPages}}</span>
+        </a>
+      </li>
+      <li class="page-item px-1">
+        <a class="page-link" (click)="nextPage()" [class.disabled]="currentPage+1>=totalPages">Next</a>
+      </li>
+    </ul>
+  </nav>
+  <!--          paging-->
 
 </section>
 <!-- ================ Explore section end ================= -->

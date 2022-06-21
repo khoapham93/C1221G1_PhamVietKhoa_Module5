@@ -36,9 +36,10 @@ export class BusService {
   public save(bus: Bus): Observable<Bus> {
     bus.status = true;
     if (bus.id === undefined) {
-      return this.http.post<Bus>(`${API_URL}/buses`,bus);
+      return this.http.post<Bus>(`${API_URL}/buses`, bus);
     } else {
       return this.http.patch<Bus>(`${API_URL}/buses/${bus.id}`, bus);
     }
   }
+
 }

@@ -14,13 +14,24 @@ public class BusService implements IBusService {
     private IBusRepository iBusRepository;
 
     @Override
-    public Page<Bus> findAll(String ownerVal,  Pageable pageable) {
-        return this.iBusRepository.findAll(pageable);
+    public Page<Bus> findAll(String ownerVal, Pageable pageable) {
+        return this.iBusRepository.findAllByOwnerContainingAndStatus(ownerVal, true, pageable);
     }
 
     @Override
     public void save(Bus bus) {
         bus.setStatus(true);
+        this.iBusRepository.save(bus);
+    }
+
+    @Override
+    public Bus findById(int id) {
+        return this.iBusRepository.findFirstByIdAndStatus(id, true);
+    }
+
+    @Override
+    public void remove(Bus bus) {
+        bus.setStatus(false);
         this.iBusRepository.save(bus);
     }
 }

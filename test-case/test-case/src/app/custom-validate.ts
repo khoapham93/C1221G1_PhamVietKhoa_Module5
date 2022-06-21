@@ -11,7 +11,7 @@ export class CustomValidate {
 
   dateValidate(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {
-      if (control && control.value && !moment(control.value, ['HH:mm'], true).isValid()) {
+      if (control && control.value && !moment(control.value, ['HH:mm', 'HH:mm:ss'], true).isValid()) {
         return {dateValidator: true};
       }
       return null;

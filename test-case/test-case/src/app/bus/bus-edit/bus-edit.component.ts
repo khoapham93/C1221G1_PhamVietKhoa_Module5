@@ -39,10 +39,10 @@ export class BusEditComponent implements OnInit {
       owner: new FormControl('', [Validators.required]),
       startLocation: new FormControl('', [Validators.required]),
       arriveLocation: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [Validators.required, Validators.pattern('^(090|093|097)\\d{7}$')]),
+      phone: new FormControl('', [Validators.required, Validators.pattern('^(091|093|097)\\d{7}$')]),
       email: new FormControl('', [Validators.required, Validators.email]),
       timeStart: new FormControl('', [Validators.required, this.customValidate.dateValidate()]),
-      timeArrive: new FormControl('', [Validators.required])
+      timeArrive: new FormControl('', [Validators.required, this.customValidate.dateValidate()])
     });
 
     const routeParams = this.activeRoute.snapshot.paramMap;

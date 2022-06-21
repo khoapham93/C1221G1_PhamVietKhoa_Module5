@@ -15,6 +15,7 @@ export class BusListComponent implements OnInit {
   busDelete = {} as Bus;
   totalPages: number;
   currentPage: number;
+  ownerSearch = '';
 
   constructor(private busService: BusService) {
   }
@@ -52,5 +53,30 @@ export class BusListComponent implements OnInit {
 
   getBus(bus: Bus) {
     this.busDelete = bus;
+  }
+
+  previousPage() {
+    const request = {};
+    if ((this.currentPage) > 0) {
+      request['page'] = this.currentPage - 1;
+      request['size'] = 5;
+      request['owner'] = this.ownerSearch;
+      this.getBuses(request);
+    }
+  }
+
+  nextPage() {
+    const request = {};
+    if ((this.currentPage + 1) < this.totalPages) {
+      request['page'] = this.currentPage + 1;
+      request['size'] = 5;
+      request['owner'] = this.ownerSearch;
+      this.getBuses(request);
+    }
+  }
+
+  searchBuses(ownerSearch: HTMLInputElement) {
+    this.ownerSearch = ownerSearch.value;
+    this.getBuses({page: 0, size: 5, owner: this.ownerSearch});
   }
 }
